@@ -1,0 +1,53 @@
+.card-image{
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.artisan-card .card-image{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.card img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.category-card{
+    max-height: 500px;
+    max-width: 400px;
+}
+
+.artisan-card, .product-card{
+    max-height: 400px;
+    min-width: 300px;
+}
+
+.card-button{
+    text-align: center;
+}
+
+.category-card .card-button{
+    position: relative;
+    bottom: 70px;
+    z-index: 2;
+}
+
+.product-card .card-button{
+    text-align: start;
+}
+
+.card-button button{
+    height: 40px;
+    width: auto;
+    padding: 0px 20px;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: white;
+}

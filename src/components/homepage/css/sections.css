@@ -1,0 +1,18 @@
+.section{
+    min-height: 50vh;
+    margin-bottom: 50px;
+}
+
+.list-flex{
+    display: flex;
+    overflow-x: scroll;
+}
+
+.hero{
+    display: grid;
+    place-content: center;
+}
+
+.values{
+    height: 30vh;
+}
