@@ -1,5 +1,5 @@
 export function ArtisanCard(){
     return(
-        <h1>Artisan Card</h1>
+        <h3>Artisan Card</h3>
     )
 }

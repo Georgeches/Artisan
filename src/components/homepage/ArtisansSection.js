@@ -1,10 +1,10 @@
-import { ArtisanCard } from "../ArtisanCard";
+import { ArtisanCard } from "../cards/ArtisanCard";
 
 export default function ArtisansSection(){
     return (
-        <div className="">
-        <h1>Artisans</h1>
-        <ArtisanCard />
+        <div className="container section border">
+            <h1>Artisans</h1>
+            <ArtisanCard />
         </div>
     )
 }

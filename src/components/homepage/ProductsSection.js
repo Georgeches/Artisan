@@ -1,10 +1,10 @@
-import ProductCard from "../ProductCard"
+import ProductCard from "../cards/ProductCard"
 
 export default function ProductsSection(){
     return (
-        <div className="">
-        <h1>Artisans</h1>
-        <ProductCard />
+        <div className="container section border">
+            <h1>Products</h1>
+            <ProductCard />
         </div>
     )
 }

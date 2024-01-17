@@ -32,14 +32,14 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={
-          <>
+          <div className='App'>
             <Hero />
             <CategoriesSection/>
             <ProductsSection/>
             <ArtisansSection/>
             <ValuesSection/>
             <Footer/>
-          </>
+          </div>
         } />
         <Route path="/products/:id" element={<ProductDetail api={api}/>} />
         <Route path="/artisans/:id" element={<ArtisanPage api={api}/>} />

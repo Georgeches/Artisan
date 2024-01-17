@@ -1,0 +1,10 @@
+.section{
+    height: 57vh;
+    display: grid;
+    place-content: center;
+    margin-bottom: 50px;
+}
+
+.values{
+    height: 30vh;
+}

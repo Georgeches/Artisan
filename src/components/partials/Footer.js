@@ -1,7 +1,7 @@
 export default function Footer(){
     return (
         <footer>
-            Footer
+            <p className="lead">Footer</p>
         </footer>
     )
 }
