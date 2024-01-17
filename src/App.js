@@ -10,7 +10,6 @@ import Navbar from './components/partials/Navbar';
 import Hero from './components/homepage/Hero';
 import CategoriesSection from './components/homepage/CategoriesSection';
 import ProductsSection from './components/homepage/ProductsSection';
-import ValuesSection from './components/homepage/ValuesSection';
 import ArtisansSection from './components/homepage/ArtisansSection';
 import Footer from './components/partials/Footer';
 import ProductDetail from './components/ProductDetail';
@@ -32,12 +31,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={
-          <div className='App'>
+          <div className='App container-fluid'>
             <Hero />
             <CategoriesSection/>
             <ProductsSection/>
             <ArtisansSection/>
-            <ValuesSection/>
             <Footer/>
           </div>
         } />

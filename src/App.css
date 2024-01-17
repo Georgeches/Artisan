@@ -4,6 +4,10 @@ body{
   font-family: 'Inter', sans-serif;
 }
 
+p{
+  margin: 0px;
+}
+
 .App{
   height: 100%;
 }
@@ -11,4 +15,21 @@ body{
 footer{
   height: 10vh;
   text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bfbfbf; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

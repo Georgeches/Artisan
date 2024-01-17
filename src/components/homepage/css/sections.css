@@ -1,8 +1,16 @@
 .section{
-    height: 57vh;
+    min-height: 50vh;
+    margin-bottom: 50px;
+}
+
+.list-flex{
+    display: flex;
+    overflow-x: scroll;
+}
+
+.hero{
     display: grid;
     place-content: center;
-    margin-bottom: 50px;
 }
 
 .values{
