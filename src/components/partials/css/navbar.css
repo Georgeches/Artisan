@@ -1,5 +1,42 @@
 nav{
-    height: 15vh;
     width: 100%;
-    padding: 30px 40px;
+    padding: 20px 15px;
+}
+
+.nav1{
+    display: flex;
+    justify-content: space-around;
+}
+
+.search_bar {
+    width: 40%;
+    border: 2px solid;
+    border-image: linear-gradient(to right, red, purple, blue);
+    border-image-slice: 3;
+}
+
+
+.sign_up{
+    border: 0px;
+    background-color: inherit;
+    font-weight: bolder;
+}
+
+.sign_up:hover{
+    border-radius: 20px;
+    background-color: rgba(235, 232, 232, 0.815);
+}
+
+#heart{
+    font-size: 200%;
+}
+
+#cart{
+    font-size: 150%;
+}
+
+.nav2{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
 }
