@@ -3,7 +3,7 @@ import './css/navbar.css'
 export default function Navbar(){
     const logo = process.env.PUBLIC_URL + '/artisans-logo/transparent.png';
     return (
-        <nav>
+        <nav className=''>
             <section>
                 <div className='nav1'> 
                     <img src={logo} alt='logo' width='150'/>
@@ -12,8 +12,8 @@ export default function Navbar(){
                         <button className='btn px-3 h-75 sign_up'>sell your art</button>
                         <button className='btn px-3 h-75 sign_up'>log in</button>
                         <button className='btn px-3 h-75 sign_up'>sign up</button>
-                        <button className='btn px-3 h-75 sign_up' id='cart'><i class="bi bi-suit-heart"></i></button>
-                        <button className='btn px-3 h-75 sign_up' id='cart'><i class="bi bi-cart"></i></button>
+                        <button className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></button>
+                        <button className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></button>
                     </div>
                 </div>
                 <div className='nav2'>
