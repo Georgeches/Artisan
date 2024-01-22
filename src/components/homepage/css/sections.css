@@ -13,6 +13,7 @@
 .hero{
     max-height: 70vh;
     overflow: hidden;
+    position: relative;
 }
 
 .hero-image{
@@ -29,7 +30,7 @@
 .hero-texts{
     position: absolute;
     z-index: 3;
-    bottom: 25vh;
+    top: 5vh;
 }
 
 p.display-4{

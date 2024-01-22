@@ -33,7 +33,6 @@ function App() {
         <Route path='/' element={
           <div className='App container-fluid p-0'>
             <Hero />
-            <CategoriesSection/>
             <ProductsSection/>
             <ArtisansSection/>
             <Footer/>

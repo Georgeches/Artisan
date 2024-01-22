@@ -1,19 +1,37 @@
 nav{
     width: 100%;
-    padding: 20px 150px;
+    padding: 20px 0px;
 }
 
 .nav1{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+.logo{
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .search_bar {
-    width: 50%;
-    border: 2px solid;
+    width: 30%;
+    height: 50px;
     border-image: linear-gradient(to right, red, purple, blue);
     border-image-slice: 3;
-    padding: 15px 15px;
+    padding: 5px 15px;
+}
+
+.mobile-search-bar{
+    height: 45px;
+    border-image: linear-gradient(to right, red, purple, blue);
+    border-image-slice: 3;
+    padding-left: 10px;
+    font-size: 16px;
+    border-radius: 5px;
 }
 
 
@@ -38,6 +56,8 @@ nav{
 
 .nav2{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 5%;
+    overflow-x: hidden;
     margin-top: 2%;
 }
