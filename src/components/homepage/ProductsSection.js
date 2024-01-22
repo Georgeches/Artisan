@@ -6,11 +6,11 @@ export default function ProductsSection(){
             <h4>Featured Products</h4>
 
             <div className="products list-flex">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                <ProductCard page={'home'}/>
+                <ProductCard page={'home'}/>
+                <ProductCard page={'home'}/>
+                <ProductCard page={'home'}/>
+                <ProductCard page={'home'}/>
             </div>
         </div>
     )

@@ -10,7 +10,7 @@ export default function Navbar(){
                     <div className='logo'>
                         <img src={logo} alt='logo' width='100%' height='auto'/>
                     </div>
-                    <input classProduct className='search_bar' placeholder='SEARCH'></input>
+                    <input className='search_bar' placeholder='SEARCH'></input>
                     <div className='buttons d-flex justify-content-evenly align-items-center'>
                         <button className='btn px-3 h-75 sign_up'>Sell</button>
                         <button className='btn px-3 h-75 sign_up'>log in</button>
@@ -61,7 +61,7 @@ export default function Navbar(){
                 </div>
 
                 <div className=''>
-                    <input classProduct className='mobile-search-bar w-100' placeholder='SEARCH'></input>
+                    <input className='mobile-search-bar w-100' placeholder='SEARCH'></input>
                 </div>
             </section>
         </nav>
