@@ -12,8 +12,8 @@ import CategoriesSection from './components/homepage/CategoriesSection';
 import ProductsSection from './components/homepage/ProductsSection';
 import ArtisansSection from './components/homepage/ArtisansSection';
 import Footer from './components/partials/Footer';
-import ProductDetail from './components/ProductDetail';
-import ArtisanPage from './components/ArtisanPage';
+import ProductDetail from './components/pages/ProductDetail';
+import ArtisanPage from './components/pages/ArtisanPage';
 
 function App() {
 

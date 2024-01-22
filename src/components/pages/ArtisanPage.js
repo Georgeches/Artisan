@@ -19,7 +19,7 @@ export default function ArtisanPage({api}){
             setArtisan(data);
           })
           .catch((error) => {
-            console.error('Error fetching artisan:', error);
+            console.error('Error fetching artisan: ', error);
           });
       }, []);
 

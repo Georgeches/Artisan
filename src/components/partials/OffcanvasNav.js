@@ -2,7 +2,7 @@ import React from "react";
 
 export default function OffcanvasNav({logo}){
     return (
-        <div className="offcanvas offcanvas-start w-75 ps-4 pt-3" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasExampleLabel">
+        <div className="offcanvas offcanvas-start w-75 ps-4 pt-3" tabIndex="-1" id="offcanvasNav" aria-labelledby="offcanvasExampleLabel">
             <div className="offcanvas-header row align-items-start pt-2 bg-light" style={{width: '100%'}}>
                 <div className="col-10 p-0">
                     <p className="h6 mb-3">Hi there!</p>

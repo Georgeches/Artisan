@@ -30,16 +30,28 @@
 .hero-texts{
     position: absolute;
     z-index: 3;
-    top: 5vh;
+    top: 10vh;
 }
 
 p.display-4{
     font-family: 'Sora', sans-serif;
 }
 
+@media only screen and (min-width: 768px){
+    p.long-text{
+        padding: 0px 70px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    p.long-text{
+        padding: 0px 50px;
+    }
+}
+
 @media only screen and (max-width: 650px){
     .hero-texts{
-        bottom: 38vh;
+        top: 9vh;
     }
 }
 
@@ -52,6 +64,5 @@ p.display-4{
 
 @media only screen and (width: 820px){
     .hero-texts{
-        bottom: 45vh;
     }
 }
