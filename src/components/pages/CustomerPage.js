@@ -3,7 +3,7 @@ import './css/customerInfo.css';
 import { useNavigate } from 'react-router-dom';
 import data from '../../data';
 
-export default function ContactInfo() {
+export default function CustomerInfo() {
     const nav = useNavigate();
     const countryOptions = data['countryOptions'];
 
@@ -58,7 +58,7 @@ export default function ContactInfo() {
             sessionStorage.setItem('user_details', JSON.stringify(updatedUserDetails));
         }
         console.log(userDetails)
-        nav('/payment');
+        nav('/checkout');
     }
 
     return (

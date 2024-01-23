@@ -23,8 +23,8 @@ export default function Navbar(){
                         <button className='btn px-3 h-75 sign_up'>Sell</button>
                         <button className='btn px-3 h-75 sign_up'>log in</button>
                         <button className='btn px-3 h-75 sign_up'>sign up</button>
-                        <button className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></button>
-                        <button className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></button>
+                        <a href = '/' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></a>
+                        <a href='/cart' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></a>
                     </div>
                 </div>
             </section>
@@ -57,7 +57,7 @@ export default function Navbar(){
 
                     <div className='d-flex justify-content-evenly align-items-center'>
                         <button className='btn px-2 me-1 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></button>
-                        <button className='btn px-2 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></button>
+                        <a href='/cart' className='btn px-2 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></a>
                     </div>
                 </div>
 
