@@ -51,7 +51,7 @@ export default function PaymentForm(){
                             <p className="lead fw-normal">
                                 Contact Information
                             </p>
-                            <a href="/checkout" className="text-dark">Edit</a>
+                            <a href="/customerinfo" className="text-dark">Edit</a>
                         </div>
                         <div className="card-body">
                             <p className=" mb-3" style={{textTransform: ""}}>{userDetails.email}</p>
@@ -68,7 +68,7 @@ export default function PaymentForm(){
                             <p className="lead fw-normal">
                                 Shipping Information
                             </p>
-                            <a href="/checkout" className="text-dark">Edit</a>
+                            <a href="/customerinfo" className="text-dark">Edit</a>
                         </div>
                         <div className="card-body">
                             <p className=" mb-3" style={{textTransform: "capitalize"}}>{userDetails.addressOne}, {userDetails.addressTwo}, {userDetails.city}</p>

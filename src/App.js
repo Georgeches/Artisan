@@ -3,21 +3,27 @@ import './App.css';
 
 //libraries
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, json } from "react-router-dom";
 
 //components
 import Navbar from './components/partials/Navbar';
 import Hero from './components/homepage/Hero';
-import CategoriesSection from './components/homepage/CategoriesSection';
 import ProductsSection from './components/homepage/ProductsSection';
 import ArtisansSection from './components/homepage/ArtisansSection';
 import Footer from './components/partials/Footer';
 import ProductDetail from './components/pages/ProductDetail';
 import ArtisanPage from './components/pages/ArtisanPage';
 import Values from './components/partials/Values';
+import PaymentForm from './components/pages/PaymentForm';
+import CustomerInfo from './components/pages/CustomerPage';
 
 function App() {
 
+  const userDetails = sessionStorage.getItem("user_details");
+  if(userDetails == null){
+    sessionStorage.setItem('user_details', JSON.stringify([]));
+  }
+  console.log(userDetails)
   const api = `${process.env.REACT_APP_API}`
   const [artisans, setArtisans] = useState([])
 
@@ -40,6 +46,8 @@ function App() {
             <Footer/>
           </div>
         } />
+        <Route path="/customerinfo" element={<CustomerInfo/>} />
+        <Route path="/checkout" element={<PaymentForm/>} />
         <Route path="/products/:id" element={<ProductDetail api={api}/>} />
         <Route path="/artisans/:id" element={<ArtisanPage api={api}/>} />
       </Routes>
