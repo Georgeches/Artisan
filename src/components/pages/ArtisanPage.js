@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Searchbar from "../partials/Searchbar";
 
 export default function ArtisanPage({api}){
     const { id } = useParams();
@@ -24,9 +25,11 @@ export default function ArtisanPage({api}){
       }, []);
 
     return (
-        <div className="">
+        <div className="container mt-5">
             <h1>Artisan:</h1>
             <h3>{artisan.name} - {artisan._id}</h3>
+
+            <Searchbar />
         </div>
     )
 }

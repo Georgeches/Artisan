@@ -8,9 +8,15 @@ export default function Navbar(){
             <section className='w-100 navbar-large d-none d-md-block'>
                 <div className='nav1 w-100'>
                     <div className='logo'>
-                        <img src={logo} alt='logo' width='100%' height='auto'/>
+                        <a href='/' className='web-logo'>
+                            {/* <img src={logo} alt='logo' width='100%' height='auto'/> */}
+                            <span className='text-dark'>Inua</span><span className='text-danger'>Cra</span><span className='text-success'>fts</span>
+                        </a>
                     </div>
-                    <input className='search_bar' placeholder='SEARCH'></input>
+                    <input className='search_bar' placeholder='Search here'></input>
+                    <button className='btn btn-link search-icon'>
+                        <i class="bi bi-search"></i>
+                    </button>
                     <div className='buttons d-flex justify-content-evenly align-items-center'>
                         <button className='btn px-3 h-75 sign_up'>Sell</button>
                         <button className='btn px-3 h-75 sign_up'>log in</button>
@@ -18,16 +24,6 @@ export default function Navbar(){
                         <button className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></button>
                         <button className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></button>
                     </div>
-                </div>
-                <div className='nav2'>
-                    <p>Something</p>
-                    <p>Another</p>
-                    <p>Category</p>
-                    <p>Within</p>
-                    <p>Artisan</p>
-                    <p>Website</p>
-                    <p>Kenya</p>
-                    <p>For you</p>
                 </div>
             </section>
 
