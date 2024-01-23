@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@800&display=swap');
 
 .section{
-    min-height: 50vh;
-    margin-bottom: 50px;
+    min-height: 48vh;
 }
 
 .list-flex{
@@ -11,7 +10,7 @@
 }
 
 .hero{
-    max-height: 70vh;
+    max-height: 96vh;
     overflow: hidden;
     position: relative;
 }
@@ -25,12 +24,24 @@
 .hero-image img{
     width: 100%;
     height: auto;
+    filter: brightness(70%);
 }
 
 .hero-texts{
     position: absolute;
     z-index: 3;
-    top: 10vh;
+    top: 0vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(113, 77, 32, 0.562);
+}
+
+.hero-texts .hero-button{
+    background-color: rgb(113, 77, 32);
+    color: white;
+    font-size: 15px;
+    width: 200px !important;
 }
 
 p.display-4{
@@ -51,14 +62,8 @@ p.display-4{
 
 @media only screen and (max-width: 650px){
     .hero-texts{
-        top: 9vh;
-    }
-}
-
-@media only screen and (max-width: 600px){
-    .hero-image img{
-        height: 100%;
-        width: auto;
+        top: 0vh;
+        background-color: rgba(113, 77, 32, 0.295);
     }
 }
 

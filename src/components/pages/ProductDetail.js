@@ -1,9 +1,10 @@
 import React from 'react';
-import Select from 'react-select';
 import { useState } from 'react';
 import ProductCard from '../cards/ProductCard';
+import Values from '../partials/Values';
 
 import './css/productDetail.css'
+import Searchbar from '../partials/Searchbar';
 
 export default function ProductDetail(){
 
@@ -35,7 +36,7 @@ export default function ProductDetail(){
     };
 
     return(
-        <div className="product-detail container-fluid px-5">
+        <div className="product-detail mt-5 container-fluid px-md-5">
             <a href={window.history.back} onClick={goBack} className="btn btn-link text-decoration-none text-dark"><i className="bi bi-arrow-left"></i> Back</a>
             <div className="row gap-lg-1 product-detail-row justify-content-around align-items-start pt-5">
                 <div className="product-images col-md-1 border-0">
@@ -52,14 +53,14 @@ export default function ProductDetail(){
                 </div>
 
                 <div className="col-md-5">
-                    <p className='lead fw-normal'>Bouclé tweed blazer</p>
+                    <p className='lead fw-normal mt-3 mt-md-0'>Bouclé tweed blazer</p>
                     <div className='product-artisan mt-2 d-flex align-items-center'>
                         <div className='artisan-image me-2'>
                             <img src='https://ih1.redbubble.net/avatar.5104187.140x140.jpg' alt='artisan'/>
                         </div>
                         <p className='fw-light small'>Designed and sold by <strong>George</strong></p>
                     </div>
-                    <p className='fw-bold h5 mt-3' style={{color: 'rgb(255,88,110)'}}>Ksh 5000</p>
+                    <p className='fw-bold h5 mt-3 price'>Ksh 5000</p>
                     
                     <button className='btn text-center mt-3 add-cart rounded d-flex justify-content-center align-items-center'><i className="bi bi-cart-plus me-2" style={{fontSize: "20px"}}></i> Add to cart</button>
 
@@ -100,6 +101,9 @@ export default function ProductDetail(){
                     <ProductCard page={'product-detail'}/>
                 </div>
             </div>
+
+            <Searchbar />
+            <Values />
         </div>
     )
 }

@@ -1,0 +1,8 @@
+.recommendations{
+    display: flex;
+    overflow-x: scroll;
+}
+
+.recommendation{
+    min-width: fit-content;
+}

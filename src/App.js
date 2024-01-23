@@ -14,6 +14,7 @@ import ArtisansSection from './components/homepage/ArtisansSection';
 import Footer from './components/partials/Footer';
 import ProductDetail from './components/pages/ProductDetail';
 import ArtisanPage from './components/pages/ArtisanPage';
+import Values from './components/partials/Values';
 
 function App() {
 
@@ -34,7 +35,8 @@ function App() {
           <div className='App container-fluid p-0'>
             <Hero />
             <ProductsSection/>
-            <ArtisansSection/>
+            <ArtisansSection artisans={artisans}/>
+            <Values />
             <Footer/>
           </div>
         } />

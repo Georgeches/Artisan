@@ -11,9 +11,10 @@
 }
 
 .card img{
-    height: 100%;
-    width: auto;
+    width: 100%;
+    height: auto;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .category-card{
@@ -22,9 +23,10 @@
     margin-bottom: -20px;
 }
 
-.artisan-card{
-    max-height: 400px;
-    min-width: 300px;
+.artisan-card, .product-card{
+    max-height: 330px;
+    min-width: 220px;
+    max-width: 250px;
 }
 
 .card-button{
