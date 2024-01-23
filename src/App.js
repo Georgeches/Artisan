@@ -3,7 +3,7 @@ import './App.css';
 
 //libraries
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, json } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //components
 import Navbar from './components/partials/Navbar';
@@ -16,6 +16,7 @@ import ArtisanPage from './components/pages/ArtisanPage';
 import Values from './components/partials/Values';
 import PaymentForm from './components/pages/PaymentForm';
 import CustomerInfo from './components/pages/CustomerPage';
+import Cart from './components/pages/Cart';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
             <Footer/>
           </div>
         } />
+        <Route path="/cart" element={<Cart/>} />
         <Route path="/customerinfo" element={<CustomerInfo/>} />
         <Route path="/checkout" element={<PaymentForm/>} />
         <Route path="/products/:id" element={<ProductDetail api={api}/>} />

@@ -21,6 +21,12 @@ a{
   height: 100%;
 }
 
+.cart-btn{
+  background-color: rgb(202, 135, 54);
+  color: white;
+  font-size: 16px;
+}
+
 footer{
   height: 10vh;
   text-align: center;
