@@ -13,10 +13,12 @@ export default function Navbar(){
                             <span className='text-dark'>Inua</span><span className='text-danger'>Cra</span><span className='text-success'>fts</span>
                         </a>
                     </div>
-                    <input className='search_bar' placeholder='Search here'></input>
-                    <button className='btn btn-link search-icon'>
-                        <i class="bi bi-search"></i>
-                    </button>
+                    <form className='border' style={{width: '50%', position: 'relative'}}>
+                        <input className='search_bar w-100' placeholder='Search here'></input>
+                        <button className='btn btn-link search-icon'>
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
                     <div className='buttons d-flex justify-content-evenly align-items-center'>
                         <button className='btn px-3 h-75 sign_up'>Sell</button>
                         <button className='btn px-3 h-75 sign_up'>log in</button>
@@ -28,7 +30,7 @@ export default function Navbar(){
             </section>
 
             <section className='navbar-small container-fluid d-md-none'>
-                <div className='w-100 d-flex justify-content-between'>
+                <div className='w-100 py-1 d-flex align-items-center justify-content-between'>
                     <div className='d-flex align-items-center'>
                         <div className='toggle-nav'>
                             <button
@@ -46,18 +48,26 @@ export default function Navbar(){
                         </div>
 
                         <div className='logo'>
-                            <img src={logo} alt='logo' width='100%' height='auto'/>
+                        <a href='/' className='mobile-logo'>
+                            {/* <img src={logo} alt='logo' width='100%' height='auto'/> */}
+                            <span className='text-dark'>Inua</span><span className='text-danger'>Cra</span><span className='text-success'>fts</span>
+                        </a>
                         </div>
                     </div>
 
-                    <div className='buttons d-flex justify-content-evenly align-items-center pb-2'>
-                        <button className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></button>
-                        <button className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></button>
+                    <div className='d-flex justify-content-evenly align-items-center'>
+                        <button className='btn px-2 me-1 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></button>
+                        <button className='btn px-2 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></button>
                     </div>
                 </div>
 
                 <div className=''>
-                    <input className='mobile-search-bar w-100' placeholder='SEARCH'></input>
+                    <form style={{position: 'relative'}}>
+                        <input className='mobile-search-bar w-100' placeholder='Search here'></input>
+                        <button className='btn btn-link search-icon'>
+                            <i className="bi bi-search"></i>
+                        </button>
+                    </form>
                 </div>
             </section>
         </nav>
