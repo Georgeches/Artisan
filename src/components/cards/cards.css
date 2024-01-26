@@ -23,7 +23,7 @@
     margin-bottom: -20px;
 }
 
-.artisan-card, .product-card{
+.artisan-card, .product-card, .shop-product-card{
     max-height: 330px;
     min-width: 220px;
     max-width: 250px;
@@ -72,10 +72,19 @@
         display: flex;
         justify-content: space-around !important;
     }
+    .shop-product-card{
+        max-height: 330px;
+        min-width: 150px;
+        max-width: 220px;
+    }
 }
 
 @media only screen and (max-width: 500px){
     .category-card{
         height: 320px;
+    }
+
+    .shop-product-card{
+        max-width: 100%;
     }
 }
