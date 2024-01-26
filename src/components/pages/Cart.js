@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default function Cart(){
+
+  const image = process.env.PUBLIC_URL + '/images/magnolia.webp'
+
   return (
     <section className="h-100 gradient-custom">
       <div className="container py-md-5">
@@ -15,17 +18,14 @@ export default function Cart(){
                 <div className="row">
                   <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                     <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp" className="w-100" alt="Blue Jeans Jacket" />
+                      <img src={image} className="w-100" alt="Blue Jeans Jacket" />
                     </div>
                   </div>
                   <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                    <p><strong>Blue denim shirt</strong></p>
+                    <p><strong>Product name</strong></p>
                     <p className='mt-2 mb-2'>Price: 5000</p>
                     <button type="button" className="btn btn-danger btn-sm me-2 mb-2" data-mdb-toggle="tooltip" title="Remove item">
-                    <i className="bi bi-trash-fill"></i>
-                    </button>
-                    <button type="button" className="btn btn-outline-primary btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
-                    <i className="bi bi-heart-fill"></i>
+                    <i className="bi bi-trash-fill"></i> Remove
                     </button>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
@@ -47,17 +47,14 @@ export default function Cart(){
                 <div className="row">
                   <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                     <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp" className="w-100" alt="Blue Jeans Jacket" />
+                      <img src={image} className="w-100" alt="Blue Jeans Jacket" />
                     </div>
                   </div>
                   <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                    <p><strong>Blue denim shirt</strong></p>
+                    <p><strong>Product name</strong></p>
                     <p className='mt-2 mb-2'>Price: 5000</p>
                     <button type="button" className="btn btn-danger btn-sm me-2 mb-2" data-mdb-toggle="tooltip" title="Remove item">
-                    <i className="bi bi-trash-fill"></i>
-                    </button>
-                    <button type="button" className="btn btn-outline-primary btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
-                    <i className="bi bi-heart-fill"></i>
+                    <i className="bi bi-trash-fill"></i> Remove
                     </button>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
