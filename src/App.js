@@ -17,6 +17,7 @@ import Values from './components/partials/Values';
 import PaymentForm from './components/pages/PaymentForm';
 import CustomerInfo from './components/pages/CustomerPage';
 import Cart from './components/pages/Cart';
+import Shop from './components/pages/Shop';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
             <Footer/>
           </div>
         } />
+        <Route path='/shop' element={<Shop artisans={artisans} />} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/customerinfo" element={<CustomerInfo/>} />
         <Route path="/checkout" element={<PaymentForm/>} />

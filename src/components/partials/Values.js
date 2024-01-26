@@ -22,7 +22,7 @@ export default function Values(){
                     </div>
                     <div className=" col-9 value-content">
                         <h6>Secure payments</h6>
-                        <p className="mb-2 small">100% Secure Payment with 256-bit SSL encryption</p>
+                        <p className="mb-2 small">100% Secure Payment with SSL encryption</p>
                         <a href="/" className="text-warning">Learn more</a>
                     </div>
                 </div>
