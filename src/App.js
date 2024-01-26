@@ -17,7 +17,9 @@ import Values from './components/partials/Values';
 import PaymentForm from './components/pages/PaymentForm';
 import CustomerInfo from './components/pages/CustomerPage';
 import Cart from './components/pages/Cart';
+import Register from './components/pages/auth/Register';
 import Shop from './components/pages/Shop';
+import Login from './components/pages/auth/Login';
 
 function App() {
 
@@ -54,6 +56,8 @@ function App() {
         <Route path="/checkout" element={<PaymentForm/>} />
         <Route path="/products/:id" element={<ProductDetail api={api}/>} />
         <Route path="/artisans/:id" element={<ArtisanPage api={api}/>} />
+        <Route path='/register' element={<Register api={api}/>} />
+        <Route path='/login' element={<Login api={api}/>} />
       </Routes>
     </BrowserRouter>
   );
