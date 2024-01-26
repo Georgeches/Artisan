@@ -47,7 +47,7 @@ export default function Register({api}) {
 
     return (
         <div className="container-fluid checkout-page">
-            <div className="row contact-info">
+            <div className="row contact-info bg-light p-4">
                 <form onSubmit={e => registerArtisan(e)}>
                     <div className="row">
                         <div className="col">
@@ -58,7 +58,7 @@ export default function Register({api}) {
                                 autoComplete="off"
                                 type="text"
                                 id="first-name"
-                                placeholder="First name"
+                                placeholder="Enter first name"
                                 className="form-control"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
@@ -74,7 +74,7 @@ export default function Register({api}) {
                                 autoComplete="off"
                                 type="text"
                                 id="second-name"
-                                placeholder="Second name"
+                                placeholder="Enter second name"
                                 className="form-control"
                                 value={secondName}
                                 onChange={(e) => setSecondName(e.target.value)}
@@ -89,12 +89,11 @@ export default function Register({api}) {
                     <input
                         type="text"
                         id="email"
-                        placeholder="example@gmail.com"
+                        placeholder="Your email address"
                         className="form-control"
                         value={userEmail}
                         onChange={(e) => setUserEmail(e.target.value)}
                         spellCheck="false"
-                        required
                     />
                     <label htmlFor="phone" className="form-label">
                         Phone number
@@ -103,67 +102,61 @@ export default function Register({api}) {
                         autoComplete="off"
                         type="number"
                         id="phone"
-                        placeholder="712345678"
+                        placeholder="Your phone number"
                         className="form-control"
                         value={userPhone}
                         onChange={(e) => setUserPhone(e.target.value)}
                         spellCheck="false"
                         required
                     />
-                    <label htmlFor="address-one" className="form-label">
-                        Address Line 1
-                    </label>
-                    <input
-                        type="text"
-                        autoComplete="off"
-                        placeholder="Address 1 e.g street"
-                        className="form-control"
-                        value={addressOne}
-                        onChange={(e) => setAddressOne(e.target.value)}
-                        spellCheck="false"
-                        required
-                    />
-                    <label htmlFor="address-two" className="form-label">
-                        Address Line 2
-                    </label>
-                    <input
-                        type="text"
-                        autoComplete="off"
-                        placeholder="Address 2 e.g Apartment"
-                        className="form-control"
-                        value={addressTwo}
-                        onChange={(e) => setAddressTwo(e.target.value)}
-                        spellCheck="false"
-                        required
-                    />
+                    <div className='row'>
+                        <div className='col'>
+                            <label htmlFor="address-one" className="form-label">
+                                Location
+                            </label>
+                            <input
+                                type="text"
+                                autoComplete="off"
+                                placeholder="Your location"
+                                className="form-control"
+                                value={addressOne}
+                                onChange={(e) => setAddressOne(e.target.value)}
+                                spellCheck="false"
+                                required
+                            />
+                            </div>
+
+                            <div className='col'>
+                                <label htmlFor="address-two" className="form-label">
+                                    County
+                                </label>
+                                <input
+                                    type="text"
+                                    autoComplete="off"
+                                    placeholder="Your county"
+                                    className="form-control"
+                                    value={addressTwo}
+                                    onChange={(e) => setAddressTwo(e.target.value)}
+                                    spellCheck="false"
+                                    required
+                                />
+                            </div>
+                    </div>
                     <label htmlFor="city" className="form-label">
-                        City
+                        Nearest Town
                     </label>
                     <input
                         type="text"
                         autoComplete="off"
-                        placeholder="Nairobi"
+                        placeholder="Nearest town around you"
                         className="form-control"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         spellCheck="false"
                         required
                     />
-                    <label htmlFor="country" className="form-label">
-                        Country
-                    </label>
-                    <input
-                        type="text"
-                        autoComplete="off"
-                        id="country"
-                        placeholder="Kenya"
-                        className="form-control"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        spellCheck="false"
-                        required
-                    />
-                    <button className="btn btn-dark mt-4 next-btn">Register</button>
+                    <button className="btn btn-dark mt-2 next-btn">Register</button>
+                    <p className=''>Already have an account? <a href='login' className='ms-1 text-info'>Log in</a></p>
                 </form>
             </div>
         </div>

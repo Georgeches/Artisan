@@ -21,9 +21,9 @@ export default function Navbar(){
                     </form>
                     <div className='buttons d-flex justify-content-evenly align-items-center'>
                         <button className='btn px-3 h-75 sign_up'>Sell</button>
-                        <button className='btn px-3 h-75 sign_up'>log in</button>
-                        <button className='btn px-3 h-75 sign_up'>sign up</button>
-                        <a href = '/' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></a>
+                        <a href='/login' className='btn px-3 h-75 sign_up'>log in</a>
+                        <a href='/register' className='btn px-3 h-75 sign_up'>sign up</a>
+                        <a href = '/favourites' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></a>
                         <a href='/cart' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@ export default function Navbar(){
                     </div>
 
                     <div className='d-flex justify-content-evenly align-items-center'>
-                        <button className='btn px-2 me-1 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></button>
+                        <a href='/favourites' className='btn px-2 me-1 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></a>
                         <a href='/cart' className='btn px-2 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></a>
                     </div>
                 </div>

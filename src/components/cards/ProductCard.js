@@ -3,7 +3,7 @@ export default function ProductCard({page}){
     const link = '/products/x';
 
     const productClass = page==='shop'? 
-        "card shop-product-card border-0 w-100 mt-4"
+        "card shop-product-card border-0 w-100 mt-1"
         :
         "card product-card border-0 w-100 mt-4 me-2"
 

@@ -73,6 +73,7 @@ export default function Login({api}) {
                         </div>
                     </div>
                     <button className="btn btn-dark mt-4 next-btn">Log in</button>
+                    <p className='mt-5'>Don't have an account? <a href='/register' className='ms-1 text-info'>Register</a></p>
                 </form>
             </div>
         </div>

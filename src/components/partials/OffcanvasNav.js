@@ -7,9 +7,9 @@ export default function OffcanvasNav({logo}){
                 <div className="col-10 p-0">
                     <p className="h6 mb-3">Hi there!</p>
                     <div className="d-flex">
-                        <a href="/" className="text-black fw-bold me-2">Log In</a>
+                        <a href="/login" className="text-black fw-bold me-2">Log In</a>
                         <p className="me-2">or</p>
-                        <a href="/" className="text-black fw-bold">Sign Up</a>
+                        <a href="/register" className="text-black fw-bold">Sign Up</a>
                     </div>
                 </div>
                 <button type="button" className="btn-close col-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
