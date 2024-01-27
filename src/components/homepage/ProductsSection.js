@@ -1,4 +1,4 @@
-import ProductCard from "../cards/ProductCard"
+import ProductCard from "../customer/cards/ProductCard"
 
 export default function ProductsSection(){
     return (

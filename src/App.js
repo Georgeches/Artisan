@@ -20,22 +20,28 @@ import Cart from './components/pages/Cart';
 import Register from './components/pages/auth/Register';
 import Shop from './components/pages/Shop';
 import Login from './components/pages/auth/Login';
-import Favourites from './components/pages/auth/Favoutites';
+import Favourites from './components/pages/Favoutites';
 
 function App() {
 
   const userDetails = sessionStorage.getItem("user_details");
   const cart = sessionStorage.getItem("cart");
+  const activeUser = localStorage.getItem("user");
   if(userDetails == null){
     sessionStorage.setItem('user_details', JSON.stringify([]));
   }
   if(cart == null){
     sessionStorage.setItem('cart', JSON.stringify([]));
   }
+  if(activeUser == null){
+    localStorage.setItem("user", JSON.stringify([]))
+  }
   
   const api = `${process.env.REACT_APP_API}`
   const [artisans, setArtisans] = useState([])
   const [cartItems, setCart] = useState(JSON.parse(cart))
+  const [user, setUser] = useState(JSON.parse(activeUser))
+  console.log(user)
 
   useEffect(()=>{
     fetch(`${api}/artisans`)
@@ -64,7 +70,7 @@ function App() {
         <Route path="/artisans/:id" element={<ArtisanPage api={api}/>} />
         <Route path='/favourites' element={<Favourites />} />
         <Route path='/register' element={<Register api={api}/>} />
-        <Route path='/login' element={<Login api={api}/>} />
+        <Route path='/login' element={<Login api={api} artisans={artisans} setUser={setUser}/>} />
       </Routes>
     </BrowserRouter>
   );
