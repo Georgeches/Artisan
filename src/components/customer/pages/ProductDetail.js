@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import ProductCard from '../customer/cards/ProductCard';
+import ProductCard from '../cards/ProductCard';
 import Values from '../partials/Values';
 
 import './css/productDetail.css'
@@ -11,7 +11,11 @@ export default function ProductDetail({setCart, cartItems}){
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [product, setProduct] = useState({_id: '1'});
+    const [product, setProduct] = useState({
+        _id: '1',
+        price: 2500,
+        name: 'Magnolia portrait'
+    });
     const [productImages, setProductImages] = useState([
         "https://ih1.redbubble.net/image.5404692566.9768/st,small,507x507-pad,600x600,f8f8f8.u1.jpg",
         'https://ih1.redbubble.net/avatar.5104187.140x140.jpg',

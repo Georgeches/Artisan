@@ -1,6 +1,6 @@
 import './cards.css'
 
-export function ArtisanCard({artisan}){
+export default function ArtisanCard({artisan}){
     const link = `/artisans/${artisan._id}`
 
     return(

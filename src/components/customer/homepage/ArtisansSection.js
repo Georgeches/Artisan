@@ -1,4 +1,4 @@
-import { ArtisanCard } from "../customer/cards/ArtisanCard";
+import ArtisanCard from '../cards/ArtisanCard'
 
 export default function ArtisansSection({artisans}){
     return (
