@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CartItem from './CartItem';
 
-export default function Cart(){
-
-  const image = process.env.PUBLIC_URL + '/images/magnolia.webp'
+export default function Cart({cartItems, setCart, total, subtotal, tax, shipping}){
 
   return (
     <section className="h-100 gradient-custom">
@@ -11,68 +10,22 @@ export default function Cart(){
           <div className="col-md-8">
             <div className="card border mb-4">
               <div className="card-header py-3">
-                <p className="h5">Cart - 2 items</p>
+                <p className="h5">Cart - {cartItems.length} items</p>
               </div>
               <div className="card-body">
 
-                <div className="row">
-                  <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                    <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                      <img src={image} className="w-100" alt="Blue Jeans Jacket" />
-                    </div>
+                {cartItems.length === 0 && (
+                  <div style={{display: 'grid', placeContent: 'center'}}>
+                      <p className='h6 mt-4'>Cart is empty</p>
+                      <a role="button" href='/shop' className="btn btn-block mt-3 cart-btn">
+                        Start shopping <i class="bi bi-box-arrow-in-right ms-2"></i>
+                      </a>
                   </div>
-                  <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                    <p><strong>Product name</strong></p>
-                    <p className='mt-2 mb-2'>Price: 5000</p>
-                    <button type="button" className="btn btn-danger btn-sm me-2 mb-2" data-mdb-toggle="tooltip" title="Remove item">
-                    <i className="bi bi-trash-fill"></i> Remove
-                    </button>
-                  </div>
-                  <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div className="d-flex mb-4" style={{ maxWidth: "300px" }}>
-                      <button className="btn cart-btn px-2 me-2" onClick={() => {}}>
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <div className="form-outline">
-                        <input id="form1" min="1" name="quantity" value="1" type="number" className="form-control" />                      </div>
-                      <button className="btn cart-btn px-2 ms-2" onClick={() => {}}>
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                    <p className="text-start text-md-center"><strong>$17.99</strong></p>
-                  </div>
-                </div>
-                <hr className="my-4" />
+                )}
 
-                <div className="row">
-                  <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                    <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                      <img src={image} className="w-100" alt="Blue Jeans Jacket" />
-                    </div>
-                  </div>
-                  <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                    <p><strong>Product name</strong></p>
-                    <p className='mt-2 mb-2'>Price: 5000</p>
-                    <button type="button" className="btn btn-danger btn-sm me-2 mb-2" data-mdb-toggle="tooltip" title="Remove item">
-                    <i className="bi bi-trash-fill"></i> Remove
-                    </button>
-                  </div>
-                  <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div className="d-flex mb-4" style={{ maxWidth: "300px" }}>
-                      <button className="btn cart-btn px-2 me-2" onClick={() => {}}>
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <div className="form-outline">
-                        <input id="form1" min="1" name="quantity" value="1" type="number" className="form-control" />                      </div>
-                      <button className="btn cart-btn px-2 ms-2" onClick={() => {}}>
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                    <p className="text-start text-md-center"><strong>$17.99</strong></p>
-                  </div>
-                </div>
-                <hr className="my-4" />
-
+                {cartItems.map(item=>
+                  <CartItem item={item} setCart={setCart}/>
+                )}
               </div>
             </div>
             <div className="card mb-4">
@@ -91,22 +44,22 @@ export default function Cart(){
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     Subtotal
-                    <span>$53.98</span>
+                    <span>Ksh {subtotal}</span>
                   </li>
 
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     Shipping
-                    <span>$5.00</span>
+                    <span>Ksh {shipping}</span>
                   </li>
 
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     Tax
-                    <span>${0.16*53.98}</span>
+                    <span>Ksh {tax}</span>
                   </li>
 
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     Total
-                    <span>$60.00</span>
+                    <span>Ksh {total}</span>
                   </li>
                 </ul>
                 <a role="button" href='/customerinfo' className="btn btn-block mt-3 cart-btn">

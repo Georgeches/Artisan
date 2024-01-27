@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import './css/paymentPage.css'
 
-export default function PaymentForm(){
+export default function PaymentForm({total, subtotal, tax, shipping}){
 
     let userDetails = JSON.parse(sessionStorage.getItem("user_details"))
     const [userMpesa, setMpesa] = useState(0)
@@ -87,9 +87,10 @@ export default function PaymentForm(){
                             </p>
                         </div>
                         <div className="card-body">
-                            <p className=" mb-3" style={{textTransform: ""}}>Subtotal cost: Ksh. 10000</p>
-                            <p className=" mb-3" style={{textTransform: ""}}>Shipping cost: Ksh. 500</p>
-                            <p className="fw-bold">TOTAL: Ksh. 10500</p>
+                            <p className=" mb-3" style={{textTransform: ""}}>Subtotal cost: Ksh. {subtotal}</p>
+                            <p className=" mb-3" style={{textTransform: ""}}>Shipping cost: Ksh. {shipping}</p>
+                            <p className=" mb-3" style={{textTransform: ""}}>Tax: Ksh. {tax}</p>
+                            <p className="fw-bold">TOTAL: Ksh. {total}</p>
                         </div>
                     </div>
                     <hr className="mt-5"/>

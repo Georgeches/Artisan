@@ -36,12 +36,15 @@ function App() {
   if(activeUser == null){
     localStorage.setItem("user", JSON.stringify([]))
   }
-  
-  const api = `${process.env.REACT_APP_API}`
+
   const [artisans, setArtisans] = useState([])
   const [cartItems, setCart] = useState(JSON.parse(cart))
   const [user, setUser] = useState(JSON.parse(activeUser))
-  console.log(user)
+  const api = `${process.env.REACT_APP_API}`
+  const subtotal = cartItems.reduce((a, b)=>a+b?.price, 0)
+  const tax = 0.16*subtotal
+  const shipping = 500
+  const total = subtotal+tax+shipping
 
   useEffect(()=>{
     fetch(`${api}/artisans`)
@@ -63,9 +66,9 @@ function App() {
           </div>
         } />
         <Route path='/shop' element={<Shop artisans={artisans} />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} setCart={setCart}/>} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} setCart={setCart} total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
         <Route path="/customerinfo" element={<CustomerInfo/>} />
-        <Route path="/checkout" element={<PaymentForm/>} />
+        <Route path="/checkout" element={<PaymentForm total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
         <Route path="/products/:id" element={<ProductDetail api={api} setCart={setCart} cartItems={cartItems}/>} />
         <Route path="/artisans/:id" element={<ArtisanPage api={api}/>} />
         <Route path='/favourites' element={<Favourites />} />
