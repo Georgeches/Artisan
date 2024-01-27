@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/customerInfo.css';
 import { useNavigate } from 'react-router-dom';
-import data from '../../data';
+import data from '../../../data'
 
 export default function CustomerInfo() {
     const nav = useNavigate();

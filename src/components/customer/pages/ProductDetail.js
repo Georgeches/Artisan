@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import ProductCard from '../customer/cards/ProductCard';
+import ProductCard from '../cards/ProductCard';
 import Values from '../partials/Values';
 
 import './css/productDetail.css'
