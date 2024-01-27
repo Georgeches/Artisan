@@ -9,10 +9,11 @@ export default function Register({api}) {
     const [firstName, setFirstName] = useState('');
     const [secondName, setSecondName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [userPhone, setUserPhone] = useState('');
-    const [addressOne, setAddressOne] = useState('');
-    const [addressTwo, setAddressTwo] = useState('');
-    const [city, setCity] = useState('');
+    const [location, setLocation] = useState('');
+    const [county, setCounty] = useState('');
+    const [town, setTown] = useState('');
     const [country, setCountry] = useState('');
     const [errors, setErrors] = useState([]);
 
@@ -21,10 +22,10 @@ export default function Register({api}) {
 
         let artisan = {
             name: firstName + ' ' + secondName,
-            address: addressOne + ', ' + addressTwo,
-            city: city,
-            country: country,
+            county: county,
+            location: location,
             email: userEmail,
+            password: password,
             phone: userPhone,
         }
 
@@ -38,10 +39,15 @@ export default function Register({api}) {
         .then(res=>{
             if(!res.ok){
                 setErrors(res.json())
+                console.log(errors)
             }
             else{
+                console.log(res.json())
                 nav('/')
             }
+        })
+        .catch(err=>{
+            console.log(err)
         })
     }
 
@@ -109,6 +115,19 @@ export default function Register({api}) {
                         spellCheck="false"
                         required
                     />
+                    <label htmlFor="phone" className="form-label">
+                        Password
+                    </label>
+                    <input
+                        autoComplete="off"
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        className="form-control"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
                     <div className='row'>
                         <div className='col'>
                             <label htmlFor="address-one" className="form-label">
@@ -119,8 +138,8 @@ export default function Register({api}) {
                                 autoComplete="off"
                                 placeholder="Your location"
                                 className="form-control"
-                                value={addressOne}
-                                onChange={(e) => setAddressOne(e.target.value)}
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
                                 spellCheck="false"
                                 required
                             />
@@ -135,8 +154,8 @@ export default function Register({api}) {
                                     autoComplete="off"
                                     placeholder="Your county"
                                     className="form-control"
-                                    value={addressTwo}
-                                    onChange={(e) => setAddressTwo(e.target.value)}
+                                    value={county}
+                                    onChange={(e) => setCounty(e.target.value)}
                                     spellCheck="false"
                                     required
                                 />
@@ -150,8 +169,8 @@ export default function Register({api}) {
                         autoComplete="off"
                         placeholder="Nearest town around you"
                         className="form-control"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
+                        value={town}
+                        onChange={(e) => setTown(e.target.value)}
                         spellCheck="false"
                         required
                     />
