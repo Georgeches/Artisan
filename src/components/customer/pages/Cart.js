@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import CartItem from './CartItem';
 
-export default function Cart({cartItems, setCart, total, subtotal, tax, shipping}){
+export default function Cart({cartItems, cart, setCart, total, subtotal, tax, shipping}){
 
+  console.log(JSON.parse(cart))
   return (
     <section className="h-100 gradient-custom">
       <div className="container py-md-5">
@@ -24,7 +25,7 @@ export default function Cart({cartItems, setCart, total, subtotal, tax, shipping
                 )}
 
                 {cartItems.map(item=>
-                  <CartItem item={item} setCart={setCart}/>
+                  <CartItem item={item} cart={cart} setCart={setCart}/>
                 )}
               </div>
             </div>

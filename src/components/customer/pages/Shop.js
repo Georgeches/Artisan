@@ -2,7 +2,7 @@ import React from "react";
 import ProductCard from "../cards/ProductCard";
 import './css/shop.css'
 
-export default function Shop({artisans}){
+export default function Shop({artisans, products}){
 
     return(
         <div className="container-fluid px-lg-4" style={{marginTop: "80px"}}>
@@ -23,29 +23,11 @@ export default function Shop({artisans}){
                         <p className="h5">Shop</p>
 
                         <div className="d-flex justify-content-start gap-2 flex-wrap">
-                            <div className="result">
-                                <ProductCard page={'shop'}/>
-                            </div>
-
-                            <div className="result">
-                                <ProductCard page={'shop'}/>
-                            </div>
-
-                            <div className="result">
-                                <ProductCard page={'shop'}/>
-                            </div>
-
-                            <div className="result">
-                                <ProductCard page={'shop'}/>
-                            </div>
-
-                            <div className="result">
-                                <ProductCard page={'shop'}/>
-                            </div>
-
-                            <div className="result">
-                                <ProductCard page={'shop'}/>
-                            </div>
+                            {products.map(product=>
+                                <div className="result">
+                                    <ProductCard artisans={artisans} product={product} page={'shop'}/>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

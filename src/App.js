@@ -38,10 +38,11 @@ function App() {
   }
 
   const [artisans, setArtisans] = useState([])
+  const [products, setProducts] = useState([])
   const [cartItems, setCart] = useState(JSON.parse(cart))
   const [user, setUser] = useState(JSON.parse(activeUser))
   const api = `${process.env.REACT_APP_API}`
-  const subtotal = cartItems.reduce((a, b)=>a+b?.price, 0)
+  const subtotal = cartItems.reduce((a, b)=>a+parseInt(b?.total), 0)
   const tax = 0.16*subtotal
   const shipping = 500
   const total = subtotal+tax+shipping
@@ -52,6 +53,12 @@ function App() {
     .then(data=>setArtisans(data))
   },[])
 
+  useEffect(()=>{
+    fetch(`${api}/products`)
+    .then(res=>res.json())
+    .then(data=>setProducts(data))
+  },[])
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -59,18 +66,18 @@ function App() {
         <Route path='/' element={
           <div className='App container-fluid p-0'>
             <Hero />
-            <ProductsSection/>
+            <ProductsSection products={products} artisans={artisans}/>
             <ArtisansSection artisans={artisans}/>
             <Values />
             <Footer/>
           </div>
         } />
-        <Route path='/shop' element={<Shop artisans={artisans} />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} setCart={setCart} total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
+        <Route path='/shop' element={<Shop artisans={artisans} products={products}/>} />
+        <Route path="/cart" element={<Cart cart={cart} cartItems={cartItems} setCart={setCart} total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
         <Route path="/customerinfo" element={<CustomerInfo/>} />
         <Route path="/checkout" element={<PaymentForm total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
-        <Route path="/products/:id" element={<ProductDetail api={api} setCart={setCart} cartItems={cartItems}/>} />
-        <Route path="/artisans/:id" element={<ArtisanPage api={api}/>} />
+        <Route path="/products/:id" element={<ProductDetail api={api} setCart={setCart} cartItems={cartItems} artisans={artisans} products={products}/>} />
+        <Route path="/artisans/:id" element={<ArtisanPage api={api} products={products} artisans={artisans}/>} />
         <Route path='/favourites' element={<Favourites />} />
         <Route path='/register' element={<Register api={api}/>} />
         <Route path='/login' element={<Login api={api} artisans={artisans} setUser={setUser}/>} />
