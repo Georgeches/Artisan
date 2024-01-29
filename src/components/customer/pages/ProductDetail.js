@@ -14,7 +14,8 @@ export default function ProductDetail({setCart, cartItems}){
     const [product, setProduct] = useState({
         _id: '1',
         price: 2500,
-        name: 'Magnolia portrait'
+        name: 'Magnolia portrait',
+        quantity: 1
     });
     const [productImages, setProductImages] = useState([
         "https://ih1.redbubble.net/image.5404692566.9768/st,small,507x507-pad,600x600,f8f8f8.u1.jpg",
@@ -44,8 +45,8 @@ export default function ProductDetail({setCart, cartItems}){
     function addToCart(e){
         e.preventDefault();
 
-        const cart = JSON.parse(sessionStorage.getItem('cart'))
-        sessionStorage.setItem("cart", JSON.stringify([...cart, product]))
+        const cart = JSON.parse(localStorage.getItem('cart'))
+        localStorage.setItem("cart", JSON.stringify([...cart, product]))
         setCart([...cartItems, product])
         setInCart(true)
     }
@@ -53,10 +54,10 @@ export default function ProductDetail({setCart, cartItems}){
     function removeFromCart(e){
         e.preventDefault();
 
-        const cart = JSON.parse(sessionStorage.getItem('cart'))
+        const cart = JSON.parse(localStorage.getItem('cart'))
         console.log(cart)
         const remaining = cart.filter(item=>item._id!==product._id)
-        sessionStorage.setItem("cart", JSON.stringify(remaining))
+        localStorage.setItem("cart", JSON.stringify(remaining))
         setCart(remaining)
         setInCart(false)
     }

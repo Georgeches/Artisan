@@ -9,12 +9,12 @@ export default function CartItem({item, setCart}){
     function removeFromCart(e, cartItem){
         e.preventDefault();
     
-        const cart = JSON.parse(sessionStorage.getItem('cart'))
+        const cart = JSON.parse(localStorage.getItem('cart'))
         const remaining = cart.filter(item=>item._id!==cartItem?._id)
-        sessionStorage.setItem("cart", JSON.stringify(remaining))
+        localStorage.setItem("cart", JSON.stringify(remaining))
         setCart(remaining)
     }
-
+    
     return (
         <>
             <div className="row" key={item._id}>

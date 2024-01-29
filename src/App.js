@@ -25,13 +25,13 @@ import Favourites from './components/customer/pages/Favoutites';
 function App() {
 
   const userDetails = sessionStorage.getItem("user_details");
-  const cart = sessionStorage.getItem("cart");
+  const cart =  localStorage.getItem("cart");
   const activeUser = localStorage.getItem("user");
   if(userDetails == null){
     sessionStorage.setItem('user_details', JSON.stringify([]));
   }
   if(cart == null){
-    sessionStorage.setItem('cart', JSON.stringify([]));
+    localStorage.setItem('cart', JSON.stringify([]));
   }
   if(activeUser == null){
     localStorage.setItem("user", JSON.stringify([]))

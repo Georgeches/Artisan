@@ -1,0 +1,11 @@
+.profile-pic{
+    height: 70px;
+    width: 70px;
+}
+
+@media only screen and (max-width: 500px){
+    .profile-pic{
+        height: 60px;
+        width: 60px;
+    }
+}
