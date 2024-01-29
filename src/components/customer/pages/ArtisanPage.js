@@ -32,7 +32,7 @@ export default function ArtisanPage({api}){
     };
 
     return (
-        <div className="container-fluid mt-5">
+        <div className="container-fluid mt-3">
             <div className="artisan-header w-100" style={{position: 'relative', marginBottom:'140px'}}>
               <div className="px-md-4 w-100" style={{overflow: 'hidden'}}>
                 <img className="w-100" height='auto' src="https://ih0.redbubble.net/cover.749544.2400x600.jpg" alt="cover"/>
