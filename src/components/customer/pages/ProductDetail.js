@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from '../cards/ProductCard';
 import Values from '../partials/Values';
 
@@ -7,27 +7,24 @@ import './css/productDetail.css'
 import Searchbar from '../partials/Searchbar';
 import { useParams } from 'react-router-dom';
 
-export default function ProductDetail({setCart, cartItems}){
+export default function ProductDetail({api, setCart, cartItems, artisans, products}){
 
+    const {id} = useParams();
     const [isExpanded, setIsExpanded] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [product, setProduct] = useState({
-        _id: '1',
-        price: 2500,
-        name: 'Magnolia portrait',
-        quantity: 1
-    });
+    const product = products.find(product=>product._id===id)
     const [productImages, setProductImages] = useState([
         "https://ih1.redbubble.net/image.5404692566.9768/st,small,507x507-pad,600x600,f8f8f8.u1.jpg",
         'https://ih1.redbubble.net/avatar.5104187.140x140.jpg',
         process.env.PUBLIC_URL+'/images/magnolia.webp'
     ]);
+    const artisan = artisans.find(artisan=>artisan?._id===product?.artisanId)
+    const [otherProducts, setProducts] = useState([]);
     const [displayImage, setDisplayImage] = useState(productImages[0]);
     const [inCart, setInCart] = useState(false);
-    const {id} = useParams();
-
     const starRating = [1, 2, 3, 4];
-    const text = 'Lorem ipsum Minim deserunt culpa voluptate ipsum enim ex aliqua labore aliquip dolore laborum amet velit. Esse et non quis enim. Aute aliqua mollit fugiat laboris dolore laboris est eiusmod dolor veniam voluptate laborum proident. Sunt deserunt dolore pariatur aute aute sunt et nulla irure laborum dolore.';
+    const text = product?.description ? product?.description : ''
+
 
     function goBack(){
         window.history.back()
@@ -46,7 +43,14 @@ export default function ProductDetail({setCart, cartItems}){
         e.preventDefault();
 
         const cart = JSON.parse(localStorage.getItem('cart'))
-        localStorage.setItem("cart", JSON.stringify([...cart, product]))
+        const cartItem = {
+            _id: product?._id,
+            name: product?.name,
+            price: product?.price,
+            quantity: 1,
+            total: product?.price
+        }
+        localStorage.setItem("cart", JSON.stringify([...cart, cartItem]))
         setCart([...cartItems, product])
         setInCart(true)
     }
@@ -133,14 +137,14 @@ export default function ProductDetail({setCart, cartItems}){
                 </div>
 
                 <div className="col-lg-5">
-                    <p className='lead fw-normal mt-3 mt-md-0'>Bouclé tweed blazer</p>
+                    <p className='lead fw-normal mt-3 mt-md-0'>{product?.name}</p>
                     <div className='product-artisan mt-2 d-flex align-items-center'>
                         <div className='artisan-image me-2'>
                             <img src='https://ih1.redbubble.net/avatar.5104187.140x140.jpg' alt='artisan'/>
                         </div>
-                        <p className='fw-light small'>Designed and sold by <strong>George</strong></p>
+                        <p className='fw-light small'>Designed and sold by <strong>{artisan?.name ? artisan?.name : 'George'}</strong></p>
                     </div>
-                    <p className='fw-bold h5 mt-3 price'>Ksh 5000</p>
+                    <p className='fw-bold h5 mt-3 price'>${product?.price}</p>
                     
                     {!inCart?
                         <button onClick={e=>addToCart(e)} className='btn text-center mt-3 add-cart rounded d-flex justify-content-center align-items-center'><i className="bi bi-cart-plus me-2" style={{fontSize: "20px"}}></i> Add to cart</button>
@@ -178,11 +182,9 @@ export default function ProductDetail({setCart, cartItems}){
                 <p className='h5'>More by artist</p>
 
                 <div className="products list-flex">
-                    <ProductCard page={'product-detail'}/>
-                    <ProductCard page={'product-detail'}/>
-                    <ProductCard page={'product-detail'}/>
-                    <ProductCard page={'product-detail'}/>
-                    <ProductCard page={'product-detail'}/>
+                    {products.map(product=>
+                        <ProductCard product={product} artisans={artisans} page={'product-detail'}/>
+                    )}
                 </div>
             </div>
 

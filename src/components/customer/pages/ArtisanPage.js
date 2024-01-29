@@ -4,9 +4,10 @@ import Searchbar from "../partials/Searchbar";
 import ProductCard from "../cards/ProductCard";
 import './css/artisanPage.css'
 
-export default function ArtisanPage({api}){
+export default function ArtisanPage({api, products, artisans}){
     const { id } = useParams();
     const [ artisan, setArtisan ] = useState({});
+    const [artisanProducts, setProducts] = useState([]);
     const [isExpanded, setIsExpanded] = useState(false);
 
     const text = 'Etiam ac enim erat. Aenean vehicula feugiat purus at placerat. Morbi nec neque magna. Sed convallis elit lorem, ut ornare eros bibendum quis. In bibendum, ante ut auctor vestibulum, augue ex malesuada lacus, ac mollis dui quam sit amet libero. Aenean sollicitudin interdum suscipit. Curabitur massa sapien, varius at elementum sit amet, posuere ut dolor. Nam ante metus, elementum non turpis ac, cursus laoreet nisl. Morbi lobortis pharetra porta. Pellentesque tempor finibus metus, eu tincidunt justo consectetur ac. Nullam at diam vitae tortor accumsan aliquam sagittis vitae velit. Nulla pulvinar, tellus ac euismod faucibus, neque urna semper augue, et feugiat tellus felis vitae diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc volutpat lorem at felis auctor, sit amet gravida erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras est sem, tristique eu magna vel, egestas tincidunt nisi.'
@@ -21,6 +22,8 @@ export default function ArtisanPage({api}){
           })
           .then((data) => {
             setArtisan(data);
+            const myProducts = products.filter(product=>product.artisanId===data._id)
+            setProducts(myProducts)
           })
           .catch((error) => {
             console.error('Error fetching artisan: ', error);
@@ -42,7 +45,7 @@ export default function ArtisanPage({api}){
                 <div className="profile-pic mb-2" style={{overflow: 'hidden', borderRadius:'100%', border:'2px solid white'}}>
                   <img className="w-100" src="https://ih1.redbubble.net/avatar.970605.140x140.jpg" alt="profile" />
                 </div>
-                <p className="h4 text-center w-100">Artisan name</p>
+                <p className="h4 text-center w-100">{artisan?.name}</p>
                 <p className="small text-secondary">
                   <span className="me-2">
                     Joined January 2024,
@@ -81,29 +84,11 @@ export default function ArtisanPage({api}){
               </p>
 
               <div className="d-flex justify-content-start gap-2 flex-wrap mt-3">
-                <div className="result">
-                    <ProductCard page={'shop'}/>
-                </div>
-
-                <div className="result">
-                    <ProductCard page={'shop'}/>
-                </div>
-
-                <div className="result">
-                    <ProductCard page={'shop'}/>
-                </div>
-
-                <div className="result">
-                    <ProductCard page={'shop'}/>
-                </div>
-
-                <div className="result">
-                    <ProductCard page={'shop'}/>
-                </div>
-
-                <div className="result">
-                    <ProductCard page={'shop'}/>
-                </div>
+                {artisanProducts.map(product=>
+                  <div className="result">
+                    <ProductCard product={product} artisans={artisans} page={'shop'}/>
+                  </div>
+                )}
             </div>
             </div>
             <Searchbar />
