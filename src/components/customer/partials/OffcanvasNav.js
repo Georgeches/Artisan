@@ -2,7 +2,7 @@ import React from "react";
 
 export default function OffcanvasNav({logo}){
     return (
-        <div className="offcanvas offcanvas-start w-75 ps-4 pt-3" tabIndex="-1" id="offcanvasNav" aria-labelledby="offcanvasExampleLabel">
+        <div className="offcanvas offcanvas-start w-75 ps-2 pt-3" tabIndex="-1" id="offcanvasNav" aria-labelledby="offcanvasExampleLabel">
             <div className="offcanvas-header row align-items-start pt-2 bg-light" style={{width: '100%'}}>
                 <div className="col-10 p-0">
                     <p className="h6 mb-3">Hi there!</p>
@@ -14,9 +14,15 @@ export default function OffcanvasNav({logo}){
                 </div>
                 <button type="button" className="btn-close col-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div className="offcanvas-body">
-                <ul className="">
-
+            <div className="offcanvas-body ps-0 w-100">
+                <ul className="offcanvas-list w-100">
+                    <li>Bags</li>
+                    <li>Wall hanging baskets</li>
+                    <li>Baskets</li>
+                    <li>Necklaces</li>
+                    <li>Wristbands</li>
+                    <li>Bows & arrows</li>
+                    <li>Wood carvings</li>
                 </ul>
                 <ul className="extras">
                     <li className="mb-3">Delivery</li>

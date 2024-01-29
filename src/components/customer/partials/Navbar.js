@@ -27,6 +27,15 @@ export default function Navbar(){
                         <a href='/cart' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></a>
                     </div>
                 </div>
+                <div className='nav2'>
+                    <p>Bags</p>
+                    <p>Wall hanging baskets</p>
+                    <p>Baskets</p>
+                    <p>Necklaces</p>
+                    <p>Wristbands</p>
+                    <p>Bows & arrows</p>
+                    <p>Wood carvings</p>
+                </div>
             </section>
 
             <section className='navbar-small container-fluid d-md-none'>
