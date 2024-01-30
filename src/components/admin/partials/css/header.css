@@ -1,0 +1,43 @@
+.header{
+    top: 0px;
+  }
+  
+  
+  nav{
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+  }
+  
+  .main-nav li{
+    margin-bottom: 25px;
+  }
+  
+  .main-nav li a{
+    font-size: 16px;
+  }
+  
+  .navbar-header .navbar-brand{
+    color: rgb(0, 119, 255);
+    font-size: 25px;
+  }
+
+  @media only screen and (min-width: 800px){
+    .main-nav{
+      margin-top: 5px !important;
+    }
+    .navbar-header .navbar-brand{
+      position: relative;
+      bottom: 11px;
+    }
+  }
+  
+  @media only screen and (max-width: 800px){
+    .navbar-header .navbar-brand{
+      color: rgb(0, 119, 255);
+      font-size: 20px;
+    }
+    nav{
+      height: 60px;
+    }
+  }

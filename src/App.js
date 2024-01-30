@@ -21,6 +21,10 @@ import Register from './components/customer/pages/auth/Register';
 import Shop from './components/customer/pages/Shop';
 import Login from './components/customer/pages/auth/Login';
 import Favourites from './components/customer/pages/Favoutites';
+import Header from './components/admin/partials/Header';
+import Sidebar from './components/admin/partials/Sidebar';
+import Dashboard from './components/admin/pages/Dashboard';
+import Orders from './components/admin/pages/Orders';
 
 function App() {
 
@@ -39,13 +43,15 @@ function App() {
 
   const [artisans, setArtisans] = useState([])
   const [products, setProducts] = useState([])
+  const [orders, setOrders] = useState([])
+  const [customers, setCustomers] = useState([])
   const [cartItems, setCart] = useState(JSON.parse(cart))
   const [user, setUser] = useState(JSON.parse(activeUser))
   const api = `${process.env.REACT_APP_API}`
   const subtotal = cartItems.reduce((a, b)=>a+parseInt(b?.total), 0)
-  const tax = 0.16*subtotal
+  const tax = Math.floor(0.16*subtotal)
   const shipping = 500
-  const total = subtotal+tax+shipping
+  const total = Math.floor(subtotal+tax+shipping)
 
   useEffect(()=>{
     fetch(`${api}/artisans`)
@@ -81,6 +87,11 @@ function App() {
         <Route path='/favourites' element={<Favourites />} />
         <Route path='/register' element={<Register api={api}/>} />
         <Route path='/login' element={<Login api={api} artisans={artisans} setUser={setUser}/>} />
+        
+        {/* Admin */}
+        <Route path='/admin' element={<Dashboard orders={orders} customers={customers}/>} />
+        <Route path='/admin/orders' element={<Orders orders={orders} orders={orders} customers={customers}/>} />
+
       </Routes>
     </BrowserRouter>
   );

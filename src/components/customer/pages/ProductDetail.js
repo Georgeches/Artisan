@@ -12,7 +12,7 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
     const {id} = useParams();
     const [isExpanded, setIsExpanded] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const product = products.find(product=>product._id===id)
+    const product = products.find(product=>product?._id===id)
     const [productImages, setProductImages] = useState([
         "https://ih1.redbubble.net/image.5404692566.9768/st,small,507x507-pad,600x600,f8f8f8.u1.jpg",
         'https://ih1.redbubble.net/avatar.5104187.140x140.jpg',
@@ -25,7 +25,11 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
     const starRating = [1, 2, 3, 4];
     const text = product?.description ? product?.description : ''
 
+    useEffect(()=>{
+        setInCart(cartItems.find(item=>item?._id===product?._id) !== undefined)
+    }, [product])
 
+    console.log(cartItems.find(item=>item?._id===product?._id) !== undefined)
     function goBack(){
         window.history.back()
         console.log(window.history)
