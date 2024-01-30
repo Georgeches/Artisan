@@ -1,15 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
-export default function CartItem({item, setCart, cart}){
-
-    const [quantity, setQuantity] = useState(1)
+export default function CartItem({item, setCart}){
     const image = process.env.PUBLIC_URL + '/images/magnolia.webp'
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    const quantity = item?.quantity
 
     function removeFromCart(e, cartItem){
         e.preventDefault();
-    
-        const cart = JSON.parse(localStorage.getItem('cart'))
+
         const remaining = cart.filter(item=>item._id!==cartItem?._id)
         localStorage.setItem("cart", JSON.stringify(remaining))
         setCart(remaining)
@@ -17,19 +16,48 @@ export default function CartItem({item, setCart, cart}){
 
     function increaseQuantity(e){
         e.preventDefault()
+        let newQuantity = item?.quantity+1
 
-        setQuantity(quantity+1)
-        JSON.parse(cart).find(a=>a._id===item._id)['quantity'] = quantity
-        JSON.parse(cart).find(a=>a._id===item._id)['total'] = item?.price*quantity
-        localStorage.setItem('cart', cart)
+        const newCart = cart.map(i=>{
+            if(i._id===item._id){
+                const cartItem = {
+                    _id: item?._id,
+                    name: item?.name,
+                    price: item?.price,
+                    quantity: newQuantity,
+                    total: newQuantity*item?.price
+                }
+                return cartItem
+            }
+            else{
+                return i
+            }
+        })
+        localStorage.setItem('cart', JSON.stringify(newCart))
+        setCart(newCart)
     }
 
     function decreaseQuantity(e){
         e.preventDefault()
+        let newQuantity = item?.quantity-1
 
-        setQuantity(quantity-1)
-        item['quantity'] = quantity
-        item['total'] = item?.price*quantity
+        const newCart = cart.map(i=>{
+            if(i._id===item._id){
+                const cartItem = {
+                    _id: item?._id,
+                    name: item?.name,
+                    price: item?.price,
+                    quantity: newQuantity,
+                    total: newQuantity*item?.price
+                }
+                return cartItem
+            }
+            else{
+                return i
+            }
+        })
+        localStorage.setItem('cart', JSON.stringify(newCart))
+        setCart(newCart)
     }
     
     return (
@@ -49,7 +77,7 @@ export default function CartItem({item, setCart, cart}){
                 </div>
                 <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <div className="d-flex mb-4" style={{ maxWidth: "300px" }}>
-                        <button className="btn cart-btn px-2 me-2" onClick={e => quantity > 1 && decreaseQuantity(e)}>
+                        <button className="btn cart-btn px-2 me-2" onClick={e => item?.quantity > 1 && decreaseQuantity(e)}>
                         <i class="bi bi-dash"></i>
                         </button>
                         <div className="form-outline">
