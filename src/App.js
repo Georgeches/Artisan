@@ -90,7 +90,7 @@ function App() {
         
         {/* Admin */}
         <Route path='/admin' element={<Dashboard orders={orders} customers={customers}/>} />
-        <Route path='/admin/orders' element={<Orders orders={orders} orders={orders} customers={customers}/>} />
+        <Route path='/admin/orders' element={<Orders orders={orders} customers={customers}/>} />
 
       </Routes>
     </BrowserRouter>

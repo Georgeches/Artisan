@@ -39,6 +39,7 @@ const data = {
             image: "" 
         },
     ],
+
     countryOptions: [
         { value: '+93', label: 'Afghanistan' },
         { value: '+355', label: 'Albania' },
@@ -236,7 +237,6 @@ const data = {
         { value: '+260', label: 'Zambia' },
         { value: '+263', label: 'Zimbabwe' },
     ]
-
 }
 
 export default data;
