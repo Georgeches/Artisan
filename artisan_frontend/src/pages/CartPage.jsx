@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import CartItem from './CartItem';
+/* eslint-disable react/prop-types */
+import CartItem from '../components/cartPage/CartItem';
+import {NavLink } from 'react-router-dom';
 
-export default function Cart({cartItems, cart, setCart, total, subtotal, tax, shipping}){
-
+export default function CartPage({cartItems, cart, setCart, total, subtotal, tax, shipping}){
   console.log(JSON.parse(cart))
+
   return (
     <section className="h-100 gradient-custom">
       <div className="container py-md-5">
@@ -13,22 +14,35 @@ export default function Cart({cartItems, cart, setCart, total, subtotal, tax, sh
               <div className="card-header py-3">
                 <p className="h5">Cart - {cartItems.length} items</p>
               </div>
+
               <div className="card-body">
+                {
+                  cartItems.length === 0 && (
+                    <div className='grid place-content-center'>
+                        <p className='h6 mt-4'>Cart is empty</p>
 
-                {cartItems.length === 0 && (
-                  <div style={{display: 'grid', placeContent: 'center'}}>
-                      <p className='h6 mt-4'>Cart is empty</p>
-                      <a role="button" href='/shop' className="btn btn-block mt-3 text-white text-[16px] bg-cart-btn">
-                        Start shopping <i class="bi bi-box-arrow-in-right ms-2"></i>
-                      </a>
-                  </div>
-                )}
+                        <NavLink 
+                          href='/shop' 
+                          className="btn btn-block mt-3 text-white text-[16px] bg-cart-btn"
+                        >
+                          Start shopping 
+                          <i className="bi bi-box-arrow-in-right ms-2"></i>
+                        </NavLink>
+                    </div>
+                  )
+                }
 
-                {cartItems.map(item=>
-                  <CartItem item={item} cart={cart} setCart={setCart}/>
+                {
+                  cartItems.map((item, index)=> <CartItem
+                    key={index}
+                    item={item} 
+                    cart={cart} 
+                    setCart={setCart}
+                  />
                 )}
               </div>
             </div>
+
             <div className="card mb-4">
               <div className="card-body">
                 <p><strong>Expected shipping delivery</strong></p>
@@ -36,11 +50,13 @@ export default function Cart({cartItems, cart, setCart, total, subtotal, tax, sh
               </div>
             </div>
           </div>
+
           <div className="col-md-4">
             <div className="card mb-4">
               <div className="card-header py-3">
                 <p className="h5 mb-0">Summary</p>
               </div>
+
               <div className="card-body">
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
@@ -63,9 +79,14 @@ export default function Cart({cartItems, cart, setCart, total, subtotal, tax, sh
                     <span>Ksh {total}</span>
                   </li>
                 </ul>
-                <a role="button" href='/customerinfo' className="btn btn-block mt-3 text-white text-[16px] bg-cart-btn">
-                  Go to checkout <i class="bi bi-box-arrow-in-right ms-2"></i>
-                </a>
+
+                <NavLink 
+                  to='/customerinfo' 
+                  className="btn btn-block mt-3 text-white text-[16px] bg-cart-btn"
+                >
+                  Go to checkout 
+                  <i className="bi bi-box-arrow-in-right ms-2"></i>
+                </NavLink>
               </div>
             </div>
           </div>

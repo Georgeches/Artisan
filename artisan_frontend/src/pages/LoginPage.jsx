@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import '../css/customerInfo.css';
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
 
-export default function Login({api, artisans, setUser}) {
+export default function LoginPage({api, artisans, setUser}) {
     const nav = useNavigate();
     let path = api+'/auth/artisan/login'
 
@@ -58,9 +58,13 @@ export default function Login({api, artisans, setUser}) {
                 <form onSubmit={e => loginArtisan(e)} className=''>
                     <div className="row">
                         <div className="col-12 mb-2">
-                            <label htmlFor="email" className="form-label">
+                            <label 
+                                htmlFor="email" 
+                                className="form-label"
+                            >
                                 Email
                             </label>
+
                             <input
                                 autoComplete="off"
                                 type="text"
@@ -72,12 +76,18 @@ export default function Login({api, artisans, setUser}) {
                                 spellCheck="false"
                                 required
                             />
+
                             {error?.email&&(<p className='text-danger mt-0'>{error?.email}</p>)}
                         </div>
+
                         <div className="col-12">
-                            <label htmlFor="password" className="form-label">
+                            <label 
+                                htmlFor="password" 
+                                className="form-label"
+                            >
                                 Password
                             </label>
+
                             <input
                                 autoComplete="off"
                                 type="text"
@@ -88,11 +98,17 @@ export default function Login({api, artisans, setUser}) {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
+
                             {error?.password&&(<p className='text-danger mt-0'>{error?.password}</p>)}
                         </div>
                     </div>
+                    
                     <button className="btn btn-dark mt-4 next-btn">Log in</button>
-                    <p className='mt-5'>Don't have an account? <a href='/register' className='ms-1 text-info'>Register</a></p>
+                    
+                    <p className='mt-5'>
+                        Don&apos;t have an account? 
+                        <NavLink href='/auth/register' className='ms-1 text-info'>Register</NavLink>
+                    </p>
                 </form>
             </div>
         </div>

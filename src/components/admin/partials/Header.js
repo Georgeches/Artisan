@@ -20,7 +20,7 @@ function Header({ user, merchants, orders, setCurrentMerchant, supabase}) {
   async function googleSignOut(e){
     e.preventDefault()
     await supabase.auth.signOut()
-    nav('/login')
+    nav('/auth/login')
   }
 
   function handleLogout(e){
@@ -28,7 +28,7 @@ function Header({ user, merchants, orders, setCurrentMerchant, supabase}) {
     let userConfirm = "Are you sure you want to log out?"
     if(window.confirm(userConfirm)){
       localStorage.setItem("current_user", JSON.stringify({}))
-      nav('/login')
+      nav('/auth/login')
       window.location.reload()
     }
     else{
@@ -85,7 +85,7 @@ function Header({ user, merchants, orders, setCurrentMerchant, supabase}) {
                   <>
                     <li className="register-btn login-btn">
                     <a
-                      href="/login
+                      href="/auth/login
                     "
                       className="btn btn-primary border-0"
                     >
@@ -94,7 +94,7 @@ function Header({ user, merchants, orders, setCurrentMerchant, supabase}) {
                   </li>
                   <li className="register-btn">
                     <a
-                      href="/register
+                      href="/auth/register
                     "
                       className="btn reg-btn"
                     >

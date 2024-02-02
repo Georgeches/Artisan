@@ -1,6 +1,6 @@
-export default function Favourites(){
+export default function FavouritesPage(){
     return(
-        <div className="container" style={{marginTop: '100px'}}>
+        <div className="container mt-[100px]">
             <p className="h3 text-center">Feature not yet available</p>
         </div>
     )

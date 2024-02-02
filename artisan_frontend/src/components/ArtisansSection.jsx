@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import ArtisanCard from './ArtisanCard'
+import ArtisanCard from './artisansPage/ArtisanCard'
 
 export default function ArtisansSection({artisans}){
     return (

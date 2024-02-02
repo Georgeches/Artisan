@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import '../css/customerInfo.css';
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
+import { useNavigate, NavLink} from 'react-router-dom';
 
 export default function Register({api}) {
     const nav = useNavigate();
@@ -14,7 +14,6 @@ export default function Register({api}) {
     const [location, setLocation] = useState('');
     const [county, setCounty] = useState('');
     const [town, setTown] = useState('');
-    const [country, setCountry] = useState('');
     const [errors, setErrors] = useState([]);
 
     function registerArtisan(e){
@@ -57,9 +56,11 @@ export default function Register({api}) {
                 <form onSubmit={e => registerArtisan(e)}>
                     <div className="row">
                         <div className="col">
-                            <label htmlFor="first-name" className="form-label">
-                                First name
-                            </label>
+                            <label 
+                                htmlFor="first-name" 
+                                className="form-label"
+                            >First name</label>
+
                             <input
                                 autoComplete="off"
                                 type="text"
@@ -72,10 +73,13 @@ export default function Register({api}) {
                                 required
                             />
                         </div>
+
                         <div className="col">
-                            <label htmlFor="second-name" className="form-label">
-                                Second name
-                            </label>
+                            <label 
+                                htmlFor="second-name" 
+                                className="form-label"
+                            >Second name</label>
+
                             <input
                                 autoComplete="off"
                                 type="text"
@@ -89,9 +93,12 @@ export default function Register({api}) {
                             />
                         </div>
                     </div>
-                    <label htmlFor="email" className="form-label">
-                        Email address
-                    </label>
+
+                    <label 
+                        htmlFor="email" 
+                        className="form-label"
+                    >Email address</label>
+
                     <input
                         type="text"
                         id="email"
@@ -101,9 +108,12 @@ export default function Register({api}) {
                         onChange={(e) => setUserEmail(e.target.value)}
                         spellCheck="false"
                     />
-                    <label htmlFor="phone" className="form-label">
-                        Phone number
-                    </label>
+
+                    <label 
+                        htmlFor="phone" 
+                        className="form-label"
+                    >Phone number</label>
+
                     <input
                         autoComplete="off"
                         type="number"
@@ -115,9 +125,12 @@ export default function Register({api}) {
                         spellCheck="false"
                         required
                     />
-                    <label htmlFor="phone" className="form-label">
-                        Password
-                    </label>
+
+                    <label 
+                        htmlFor="phone" 
+                        className="form-label"
+                    >Password</label>
+
                     <input
                         autoComplete="off"
                         type="password"
@@ -128,11 +141,14 @@ export default function Register({api}) {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
+
                     <div className='row'>
                         <div className='col'>
-                            <label htmlFor="address-one" className="form-label">
-                                Location
-                            </label>
+                            <label 
+                                htmlFor="address-one" 
+                                className="form-label"
+                            >Location</label>
+
                             <input
                                 type="text"
                                 autoComplete="off"
@@ -143,27 +159,32 @@ export default function Register({api}) {
                                 spellCheck="false"
                                 required
                             />
-                            </div>
+                        </div>
 
-                            <div className='col'>
-                                <label htmlFor="address-two" className="form-label">
-                                    County
-                                </label>
-                                <input
-                                    type="text"
-                                    autoComplete="off"
-                                    placeholder="Your county"
-                                    className="form-control"
-                                    value={county}
-                                    onChange={(e) => setCounty(e.target.value)}
-                                    spellCheck="false"
-                                    required
-                                />
-                            </div>
+                        <div className='col'>
+                            <label 
+                                htmlFor="address-two" 
+                                className="form-label"
+                            >County</label>
+
+                            <input
+                                type="text"
+                                autoComplete="off"
+                                placeholder="Your county"
+                                className="form-control"
+                                value={county}
+                                onChange={(e) => setCounty(e.target.value)}
+                                spellCheck="false"
+                                required
+                            />
+                        </div>
                     </div>
-                    <label htmlFor="city" className="form-label">
-                        Nearest Town
-                    </label>
+
+                    <label 
+                        htmlFor="city" 
+                        className="form-label"
+                    >Nearest Town</label>
+
                     <input
                         type="text"
                         autoComplete="off"
@@ -174,8 +195,13 @@ export default function Register({api}) {
                         spellCheck="false"
                         required
                     />
+
                     <button className="btn btn-dark mt-2 next-btn">Register</button>
-                    <p className=''>Already have an account? <a href='login' className='ms-1 text-info'>Log in</a></p>
+                    
+                    <p className=''>
+                        Already have an account? 
+                        <NavLink to='login' className='ms-1 text-info'>Log in</NavLink>
+                    </p>
                 </form>
             </div>
         </div>

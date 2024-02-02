@@ -67,7 +67,7 @@ const Sidebar = ({supabase}) => {
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="/login" onClick={e=>googleSignOut(e)}><box-icon type='solid' name='exit' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"471px"}}></box-icon></a> <a href="/login">Log out</a>
+                <a href="/auth/login" onClick={e=>googleSignOut(e)}><box-icon type='solid' name='exit' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"471px"}}></box-icon></a> <a href="/auth/login">Log out</a>
                 </li>
          </div>
           </ul>

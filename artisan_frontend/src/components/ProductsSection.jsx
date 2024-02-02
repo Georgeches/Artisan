@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import ProductCard from './ProductCard'
+import ProductCard from './productPage/ProductCard'
 
 export default function ProductsSection({products, artisans}){
     return (

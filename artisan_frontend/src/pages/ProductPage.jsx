@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import ProductCard from './ProductCard';
-import Values from '../../Values';
-import Searchbar from '../../Searchbar';
+import ProductCard from '../components/productPage/ProductCard';
+import Values from '../components/Values';
+import Searchbar from '../components/Searchbar';
 import { useParams } from 'react-router-dom';
 
-export default function ProductDetail({api, setCart, cartItems, artisans, products}){
+export default function ProductPage({setCart, cartItems, artisans, products}){
     const [isExpanded, setIsExpanded] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(true)
     const [displayImage, setDisplayImage] = React.useState(productImages[0]);
@@ -85,7 +85,7 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
                                 <img
                                     className='w-100'
                                     src={img}
-                                    onClick={e=>setDisplayImage(img)}
+                                    onClick={()=>setDisplayImage(img)}
                                     style={{cursor: 'pointer'}}
                                     alt='img'
                                 />
@@ -98,7 +98,7 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
                                 <img
                                     className='w-100'
                                     src={img}
-                                    onClick={e=>setDisplayImage(img)}
+                                    onClick={()=>setDisplayImage(img)}
                                     style={{cursor: 'pointer'}}
                                     alt='img'
                                 />
@@ -133,7 +133,7 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
                                     <img
                                         className='w-100'
                                         src={img}
-                                        onClick={e=>setDisplayImage(img)}
+                                        onClick={()=>setDisplayImage(img)}
                                         style={{cursor: 'pointer'}}
                                         alt='img'
                                     />
@@ -146,7 +146,7 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
                                     <img
                                         className='w-100'
                                         src={img}
-                                        onClick={e=>setDisplayImage(img)}
+                                        onClick={()=>setDisplayImage(img)}
                                         style={{cursor: 'pointer'}}
                                         alt='img'
                                     />
@@ -171,9 +171,9 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
                     <p className='fw-bold h5 mt-3 price'>${product?.price}</p>
                     
                     {!inCart?
-                        <button onClick={e=>addToCart(e)} className='btn text-center mt-3 add-cart rounded d-flex justify-content-center align-items-center'><i className="bi bi-cart-plus me-2" style={{fontSize: "20px"}}></i> Add to cart</button>
+                        <button onClick={()=>addToCart()} className='btn text-center mt-3 add-cart rounded d-flex justify-content-center align-items-center'><i className="bi bi-cart-plus me-2" style={{fontSize: "20px"}}></i> Add to cart</button>
                         :
-                        <button onClick={e=>removeFromCart(e)} className='btn text-center mt-3 add-cart rounded d-flex justify-content-center align-items-center'><i className="bi bi-trash me-2" style={{fontSize: "20px"}}></i> Remove from cart</button>
+                        <button onClick={()=>removeFromCart()} className='btn text-center mt-3 add-cart rounded d-flex justify-content-center align-items-center'><i className="bi bi-trash me-2" style={{fontSize: "20px"}}></i> Remove from cart</button>
                     }
 
                     <div className='about-product'>

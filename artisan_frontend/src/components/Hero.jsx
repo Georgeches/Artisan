@@ -1,5 +1,3 @@
-import './css/sections.css'
-
 export default function Hero(){
     return (
         <div className="container-fluid hero min-h-[48vh] mt-1 p-0 d-flex flex-wrap justify-content-start">

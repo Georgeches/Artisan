@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-export default function PaymentForm({total, subtotal, tax, shipping}){
+export default function PaymentPage({total, subtotal, tax, shipping}){
 
     let userDetails = JSON.parse(sessionStorage.getItem("user_details"))
     const [, setMpesa] = useState(0)

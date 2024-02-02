@@ -34,12 +34,12 @@ export default function Navbar(){
                     <div className='buttons d-flex justify-content-evenly align-items-center'>
                         <button className='btn px-3 h-75 sign_up'>Sell</button>
                         <NavLink 
-                            to='/login' 
+                            to='/auth/login' 
                             className='btn px-3 h-75 sign_up'
                         >log in</NavLink>
 
                         <NavLink 
-                            to='/register' 
+                            to='/auth/register' 
                             className='btn px-3 h-75 sign_up'
                         >sign up</NavLink>
 

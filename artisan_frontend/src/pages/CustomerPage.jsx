@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import './css/customerInfo.css';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import data from '../../../data'
+import data from '../../database/data';
 
-export default function CustomerInfo() {
+export default function CustomerPage() {
     const nav = useNavigate();
     const countryOptions = data['countryOptions'];
 
-    const [firstName, setFirstName] = useState('');
-    const [secondName, setSecondName] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [phonePrefix, setCountryPrefix] = useState('');
-    const [userPhone, setUserPhone] = useState('');
-    const [addressOne, setAddressOne] = useState('');
-    const [addressTwo, setAddressTwo] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [saveInfo, setSaveInfo] = useState(false);
-    const [userDetails, setUserDetails] = useState({});
-    const [selectFocus, setFocus] = useState(false)
+    const [firstName, setFirstName] = React.useState('');
+    const [secondName, setSecondName] = React.useState('');
+    const [userEmail, setUserEmail] = React.useState('');
+    const [phonePrefix, setCountryPrefix] = React.useState('');
+    const [userPhone, setUserPhone] = React.useState('');
+    const [addressOne, setAddressOne] = React.useState('');
+    const [addressTwo, setAddressTwo] = React.useState('');
+    const [city, setCity] = React.useState('');
+    const [country, setCountry] = React.useState('');
+    const [saveInfo] = React.useState(false);
+    const [userDetails, setUserDetails] = React.useState({});
+    const [selectFocus, setFocus] = React.useState(false)
     let savedDetails = JSON.parse(sessionStorage.getItem('user_details'))
 
-    useEffect(() => {
+    React.useEffect(() => {
         const savedUserDetails = JSON.parse(localStorage.getItem('user_details')) || JSON.parse(sessionStorage.getItem('user_details'));
         if (savedUserDetails) {
             setFirstName(savedUserDetails.firstName || '');
@@ -67,9 +66,11 @@ export default function CustomerInfo() {
                 <form onSubmit={e => saveUserDetails(e)}>
                     <div className="row">
                         <div className="col">
-                            <label htmlFor="first-name" className="form-label">
-                                First name
-                            </label>
+                            <label 
+                                htmlFor="first-name" 
+                                className="form-label"
+                            >First name</label>
+
                             <input
                                 autoComplete="off"
                                 type="text"
@@ -82,10 +83,13 @@ export default function CustomerInfo() {
                                 required
                             />
                         </div>
+
                         <div className="col">
-                            <label htmlFor="second-name" className="form-label">
-                                Second name
-                            </label>
+                            <label 
+                                htmlFor="second-name" 
+                                className="form-label"
+                            >Second name</label>
+
                             <input
                                 autoComplete="off"
                                 type="text"
@@ -99,9 +103,12 @@ export default function CustomerInfo() {
                             />
                         </div>
                     </div>
-                    <label htmlFor="email" className="form-label">
-                        Email address
-                    </label>
+
+                    <label 
+                        htmlFor="email" 
+                        className="form-label"
+                    >Email address</label>
+
                     <input
                         type="text"
                         id="email"
@@ -112,12 +119,20 @@ export default function CustomerInfo() {
                         spellCheck="false"
                         required
                     />
-                    <label htmlFor="phone" className="form-label">
-                        Phone number
-                    </label>
+
+                    <label 
+                        htmlFor="phone" 
+                        className="form-label"
+                    >Phone number</label>
+
                     <div className="row">
                         <div className="col-4 col-lg-3">
-                            <select onChange={e=>setCountryPrefix(e.target.value)} onFocus={e=>setFocus(!selectFocus)} onBlur={e=>setFocus(!selectFocus)} style={{height: "50px"}} className='form-select'>
+                            <select 
+                                onChange={e=>setCountryPrefix(e.target.value)} 
+                                onFocus={()=>setFocus(!selectFocus)} 
+                                onBlur={()=>setFocus(!selectFocus)} 
+                                className='form-select h-[50px]'
+                            >
                                 {sessionStorage.getItem('user_details')?
                                     <option value={savedDetails?.phonePrefix}>{savedDetails?.phonePrefix}</option>
                                     :
@@ -144,9 +159,12 @@ export default function CustomerInfo() {
                             />
                         </div>
                     </div>
-                    <label htmlFor="address-one" className="form-label">
-                        Address Line 1
-                    </label>
+
+                    <label 
+                        htmlFor="address-one" 
+                        className="form-label"
+                    >Address Line 1</label>
+
                     <input
                         type="text"
                         autoComplete="off"
@@ -157,9 +175,12 @@ export default function CustomerInfo() {
                         spellCheck="false"
                         required
                     />
-                    <label htmlFor="address-two" className="form-label">
-                        Address Line 2
-                    </label>
+
+                    <label 
+                        htmlFor="address-two" 
+                        className="form-label"
+                    >Address Line 2</label>
+
                     <input
                         type="text"
                         autoComplete="off"
@@ -170,9 +191,12 @@ export default function CustomerInfo() {
                         spellCheck="false"
                         required
                     />
-                    <label htmlFor="city" className="form-label">
-                        City
-                    </label>
+
+                    <label 
+                        htmlFor="city" 
+                        className="form-label"
+                    >City</label>
+
                     <input
                         type="text"
                         autoComplete="off"
@@ -183,9 +207,12 @@ export default function CustomerInfo() {
                         spellCheck="false"
                         required
                     />
-                    <label htmlFor="country" className="form-label">
-                        Country
-                    </label>
+
+                    <label 
+                        htmlFor="country" 
+                        className="form-label"
+                    >Country</label>
+
                     <input
                         type="text"
                         autoComplete="off"
@@ -197,16 +224,19 @@ export default function CustomerInfo() {
                         spellCheck="false"
                         required
                     />
+
                     <div className="form-check">
                         <input
                             className="form-check-input"
                             type="checkbox"
                             id="flexCheckDefaultOne"
                         />
-                        <label className="form-check-label" htmlFor="flexCheckDefaultOne">
-                            Agree to receive messages to your email about exciting offers...
-                        </label>
+                        <label 
+                            className="form-check-label" 
+                            htmlFor="flexCheckDefaultOne"
+                        >Agree to receive messages to your email about exciting offers...</label>
                     </div>
+
                     <button className="btn btn-dark mt-4 next-btn">Next</button>
                 </form>
             </div>

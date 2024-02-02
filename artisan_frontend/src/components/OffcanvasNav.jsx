@@ -14,14 +14,14 @@ export default function OffcanvasNav(){
 
                     <div className="d-flex">
                         <NavLink 
-                            to={'/login'} 
+                            to={'/auth/login'} 
                             className="text-black fw-bold me-2"
                         >Log In</NavLink>
 
                         <p className="me-2">or</p>
 
                         <NavLink 
-                            to="/register" 
+                            to="/auth/register" 
                             className="text-black fw-bold"
                         >Sign Up</NavLink>
                     </div>

@@ -2,8 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Searchbar from "../components/Searchbar";
-import ProductCard from "../components/customerPage/productPage/ProductCard";
-import './css/artisanPage.css'
+import ProductCard from "../components/productPage/ProductCard";
 
 export default function ArtisanPage({api, products, artisans}){
     const { id } = useParams();
