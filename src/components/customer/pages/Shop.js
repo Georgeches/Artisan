@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "../cards/ProductCard";
+import ProductCard from "../../../../artisan_frontend/src/components/customerPage/productPage/ProductCard";
 import './css/shop.css'
 
 export default function Shop({artisans, products}){

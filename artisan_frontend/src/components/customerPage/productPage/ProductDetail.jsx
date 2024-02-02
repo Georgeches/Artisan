@@ -1,47 +1,46 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { useState, useEffect } from 'react';
-import ProductCard from '../cards/ProductCard';
-import Values from '../partials/Values';
-
-import './css/productDetail.css'
-import Searchbar from '../partials/Searchbar';
+import ProductCard from './ProductCard';
+import Values from '../../Values';
+import Searchbar from '../../Searchbar';
 import { useParams } from 'react-router-dom';
 
 export default function ProductDetail({api, setCart, cartItems, artisans, products}){
-
-    const {id} = useParams();
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const product = products.find(product=>product?._id===id)
-    const [productImages, setProductImages] = useState([
+    const [isExpanded, setIsExpanded] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(true)
+    const [displayImage, setDisplayImage] = React.useState(productImages[0]);
+    const [inCart, setInCart] = React.useState(false);
+    
+    const [productImages] = React.useState([
         "https://ih1.redbubble.net/image.5404692566.9768/st,small,507x507-pad,600x600,f8f8f8.u1.jpg",
         'https://ih1.redbubble.net/avatar.5104187.140x140.jpg',
-        process.env.PUBLIC_URL+'/images/magnolia.webp'
+        import.meta.env.PUBLIC_URL+'/images/magnolia.webp'
     ]);
+    
+    const {id} = useParams();
     const artisan = artisans.find(artisan=>artisan?._id===product?.artisanId)
-    const [otherProducts, setProducts] = useState([]);
-    const [displayImage, setDisplayImage] = useState(productImages[0]);
-    const [inCart, setInCart] = useState(false);
+    const product = products.find(product=>product?._id===id)
     const starRating = [1, 2, 3, 4];
     const text = product?.description ? product?.description : ''
 
-    useEffect(()=>{
+    React.useEffectuseEffect(()=>{
         setInCart(cartItems.find(item=>item?._id===product?._id) !== undefined)
-    }, [product])
+    }, [product, cartItems])
 
     console.log(cartItems.find(item=>item?._id===product?._id) !== undefined)
+    
     function goBack(){
         window.history.back()
         console.log(window.history)
-    };
+    }
 
     function handleImageLoad(){
         setIsLoading(false);
-    };
+    }
 
     function toggleText(){
         setIsExpanded((prevState) => !prevState);
-    };
+    }
 
     function addToCart(e){
         e.preventDefault();
@@ -75,27 +74,35 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
             <a href={window.history.back} onClick={goBack} className="btn btn-link text-decoration-none text-dark"><i className="bi bi-arrow-left"></i> Back</a>
             <div className="row gap-lg-1 product-detail-row justify-content-around align-items-start pt-5">
                 <div className="product-images d-none d-lg-flex flex-column gap-2 col-md-1 border-0">
-                    {productImages.map(img=>
-                        displayImage===img?
-                        <div className='product-image rounded' style={{border: '2px solid grey'}}>
-                            <img
-                                className='w-100'
-                                src={img}
-                                onClick={e=>setDisplayImage(img)}
-                                style={{cursor: 'pointer'}}
-                                alt='img'
-                            />
-                        </div>
-                        :
-                        <div className='product-image rounded'>
-                            <img
-                                className='w-100'
-                                src={img}
-                                onClick={e=>setDisplayImage(img)}
-                                style={{cursor: 'pointer'}}
-                                alt='img'
-                            />
-                        </div> 
+                    {
+                        productImages.map((img, index) =>
+                            displayImage === img
+                                ?
+                            <div 
+                                className='product-image rounded border-gray-500 border-[2px]' 
+                                key={index}
+                            >
+                                <img
+                                    className='w-100'
+                                    src={img}
+                                    onClick={e=>setDisplayImage(img)}
+                                    style={{cursor: 'pointer'}}
+                                    alt='img'
+                                />
+                            </div>
+                                :
+                            <div 
+                                className='product-image rounded'
+                                key={index}
+                            >
+                                <img
+                                    className='w-100'
+                                    src={img}
+                                    onClick={e=>setDisplayImage(img)}
+                                    style={{cursor: 'pointer'}}
+                                    alt='img'
+                                />
+                            </div> 
                     )}
                 </div>
 
@@ -115,39 +122,52 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
 
                 <div className='w-100 d-flex d-lg-none justify-content-center mb-2'>
                     <div className="product-images mt-3 d-flex d-lg-none gap-2 border-0">
-                        {productImages.map(img=>
-                            displayImage===img?
-                            <div className='mobile-product-image rounded' style={{border: '2px solid grey'}}>
-                                <img
-                                    className='w-100'
-                                    src={img}
-                                    onClick={e=>setDisplayImage(img)}
-                                    style={{cursor: 'pointer'}}
-                                    alt='img'
-                                />
-                            </div>
-                            :
-                            <div className='mobile-product-image rounded'>
-                                <img
-                                    className='w-100'
-                                    src={img}
-                                    onClick={e=>setDisplayImage(img)}
-                                    style={{cursor: 'pointer'}}
-                                    alt='img'
-                                />
-                            </div> 
+                        {
+                            productImages.map((img, index)=>
+                                displayImage === img
+                                    ?
+                                <div 
+                                    className='mobile-product-image rounded border-[2px] border-gray-500'
+                                    key={index}
+                                >
+                                    <img
+                                        className='w-100'
+                                        src={img}
+                                        onClick={e=>setDisplayImage(img)}
+                                        style={{cursor: 'pointer'}}
+                                        alt='img'
+                                    />
+                                </div>
+                                    :
+                                <div 
+                                    className='mobile-product-image rounded'
+                                    key={index}
+                                >
+                                    <img
+                                        className='w-100'
+                                        src={img}
+                                        onClick={e=>setDisplayImage(img)}
+                                        style={{cursor: 'pointer'}}
+                                        alt='img'
+                                    />
+                                </div> 
                         )}
                     </div>
                 </div>
 
                 <div className="col-lg-5">
                     <p className='lead fw-normal mt-3 mt-md-0'>{product?.name}</p>
+                    
                     <div className='product-artisan mt-2 d-flex align-items-center'>
                         <div className='artisan-image me-2'>
                             <img src='https://ih1.redbubble.net/avatar.5104187.140x140.jpg' alt='artisan'/>
                         </div>
-                        <p className='fw-light small'>Designed and sold by <strong>{artisan?.name ? artisan?.name : 'George'}</strong></p>
+                        
+                        <p className='fw-light small'>
+                            Designed and sold by <strong>{artisan?.name ? artisan?.name : 'George'}</strong>
+                        </p>
                     </div>
+                    
                     <p className='fw-bold h5 mt-3 price'>${product?.price}</p>
                     
                     {!inCart?
@@ -160,13 +180,23 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
                         <div className='mt-5 d-flex justify-content-between flex-wrap'>
                             <p className='h5'>About product</p>
                             <div className='stars d-none d-lg-flex'>
-                                {starRating.map(star=><i key={star} style={{color: 'rgb(255,189,88)', fontSize:"18px"}} className="me-1 bi bi-star-fill"></i>)}
+                                {
+                                    starRating.map(star => <i 
+                                        key={star} 
+                                        className="me-1 bi bi-star-fill font-[18px] text-star-color"
+                                    ></i>)
+                                }
                                 <p className='ms-2 fw-bold' style={{marginTop: "1px"}}>4.6</p>
                             </div>
                         </div>
 
                         <div className='stars d-flex my-2 d-lg-none'>
-                            {starRating.map(star=><i key={star} style={{color: 'rgb(255,189,88)', fontSize:"18px"}} className="me-1 bi bi-star-fill"></i>)}
+                            {
+                                starRating.map(star => <i 
+                                    key={star} 
+                                    className="me-1 bi bi-star-fill font-[18px] text-star-color"
+                                ></i>)
+                            }
                             <p className='ms-2 fw-bold' style={{marginTop: "1px"}}>4.6</p>
                         </div>
                         
@@ -186,8 +216,13 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
                 <p className='h5'>More by artist</p>
 
                 <div className="products list-flex">
-                    {products.map(product=>
-                        <ProductCard product={product} artisans={artisans} page={'product-detail'}/>
+                    {
+                        products.map((product, index)=> <ProductCard 
+                            product={product} 
+                            artisans={artisans} 
+                            page={'product-detail'}
+                            key={index}
+                        />
                     )}
                 </div>
             </div>
@@ -196,7 +231,6 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
                 <Searchbar />
                 <Values />
             </div>
-            
         </div>
     )
 }

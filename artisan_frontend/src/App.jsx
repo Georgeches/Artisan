@@ -1,28 +1,23 @@
-//assets
-import './App.css';
-
 //libraries
-import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 
 //components
-import Navbar from './components/customer/partials/Navbar';
-import Hero from './components/customer/homepage/Hero';
-import ProductsSection from './components/customer/homepage/ProductSection';
-import ArtisansSection from './components/customer/homepage/ArtisansSection';
-import Footer from './components/customer/partials/Footer';
-import ProductDetail from './components/customer/pages/ProductDetail';
-import ArtisanPage from './components/customer/pages/ArtisanPage';
-import Values from './components/customer/partials/Values';
-import PaymentForm from './components/customer/pages/PaymentForm';
+import Navbar from './components/Navbar';
+import Hero from './components/customerPage/Hero';
+import ProductsSection from './components/customerPage/productPage/ProductSection';
+import ArtisansSection from './components/customerPage/artisansPage/ArtisansSection';
+import Footer from './components/Footer';
+import ProductDetail from './components/customerPage/productPage/ProductDetail';
+import ArtisanPage from './pages/ArtisanPage';
+import Values from './components/Values';
+import PaymentForm from './components/customerPage/PaymentForm';
 import CustomerInfo from './components/customer/pages/CustomerPage';
 import Cart from './components/customer/pages/Cart';
 import Register from './components/customer/pages/auth/Register';
 import Shop from './components/customer/pages/Shop';
 import Login from './components/customer/pages/auth/Login';
 import Favourites from './components/customer/pages/Favoutites';
-import Header from './components/admin/partials/Header';
-import Sidebar from './components/admin/partials/Sidebar';
 import Dashboard from './components/admin/pages/Dashboard';
 import Orders from './components/admin/pages/Orders';
 
@@ -41,25 +36,25 @@ function App() {
     localStorage.setItem("user", JSON.stringify([]))
   }
 
-  const [artisans, setArtisans] = useState([])
-  const [products, setProducts] = useState([])
-  const [orders, setOrders] = useState([])
-  const [customers, setCustomers] = useState([])
-  const [cartItems, setCart] = useState(JSON.parse(cart))
-  const [user, setUser] = useState(JSON.parse(activeUser))
+  const [artisans, setArtisans] = React.useState([])
+  const [products, setProducts] = React.useState([])
+  const [orders, setOrders] = React.useState([])
+  const [customers, setCustomers] = React.useState([])
+  const [cartItems, setCart] = React.useState(JSON.parse(cart))
+  const [user, setUser] = React.useState(JSON.parse(activeUser))
   const api = `${process.env.REACT_APP_API}`
   const subtotal = cartItems.reduce((a, b)=>a+parseInt(b?.total), 0)
   const tax = Math.floor(0.16*subtotal)
   const shipping = 500
   const total = Math.floor(subtotal+tax+shipping)
 
-  useEffect(()=>{
+  React.useEffect(()=>{
     fetch(`${api}/artisans`)
     .then(res=>res.json())
     .then(data=>setArtisans(data))
   },[])
 
-  useEffect(()=>{
+  React.useEffect(()=>{
     fetch(`${api}/products`)
     .then(res=>res.json())
     .then(data=>setProducts(data))
@@ -70,7 +65,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={
-          <div className='App container-fluid p-0'>
+          <div className='h-full container-fluid p-0'>
             <Hero />
             <ProductsSection products={products} artisans={artisans}/>
             <ArtisansSection artisans={artisans}/>

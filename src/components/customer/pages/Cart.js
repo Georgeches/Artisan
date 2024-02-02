@@ -18,7 +18,7 @@ export default function Cart({cartItems, cart, setCart, total, subtotal, tax, sh
                 {cartItems.length === 0 && (
                   <div style={{display: 'grid', placeContent: 'center'}}>
                       <p className='h6 mt-4'>Cart is empty</p>
-                      <a role="button" href='/shop' className="btn btn-block mt-3 cart-btn">
+                      <a role="button" href='/shop' className="btn btn-block mt-3 text-white text-[16px] bg-cart-btn">
                         Start shopping <i class="bi bi-box-arrow-in-right ms-2"></i>
                       </a>
                   </div>
@@ -63,7 +63,7 @@ export default function Cart({cartItems, cart, setCart, total, subtotal, tax, sh
                     <span>Ksh {total}</span>
                   </li>
                 </ul>
-                <a role="button" href='/customerinfo' className="btn btn-block mt-3 cart-btn">
+                <a role="button" href='/customerinfo' className="btn btn-block mt-3 text-white text-[16px] bg-cart-btn">
                   Go to checkout <i class="bi bi-box-arrow-in-right ms-2"></i>
                 </a>
               </div>
