@@ -1,26 +1,33 @@
 import './css/navbar.css'
+import { useNavigate } from 'react-router-dom';
 import OffcanvasNav from './OffcanvasNav';
 
-export default function Navbar(){
+export default function Navbar({search, setSearch}){
+    const nav = useNavigate()
     const logo = process.env.PUBLIC_URL + '/artisans-logo/transparent.png';
+
+    function handleSearch(e){
+        e.preventDefault();
+        nav('/shop')
+    }
+
     return (
         <nav className='container-fluid p-0 p-md-3 w-100'>
             <section className='w-100 navbar-large d-none d-md-block'>
                 <div className='nav1 w-100'>
                     <div className='logo'>
                         <a href='/' className='web-logo'>
-                            {/* <img src={logo} alt='logo' width='100%' height='auto'/> */}
                             <span className='text-dark'>Inua</span><span className='text-danger'>Cra</span><span className='text-success'>fts</span>
                         </a>
                     </div>
-                    <form className='border' style={{width: '50%', position: 'relative'}}>
-                        <input className='search_bar w-100' placeholder='Search here'></input>
-                        <button className='btn btn-link search-icon'>
+                    <form onSubmit={e=>handleSearch(e)} className='border' style={{width: '50%', position: 'relative'}}>
+                        <input className='search_bar w-100' value={search} placeholder='Search here' onChange={e=>setSearch(e.target.value)}></input>
+                        <button type='submit' className='btn btn-link search-icon'>
                             <i class="bi bi-search"></i>
                         </button>
                     </form>
                     <div className='buttons d-flex justify-content-evenly align-items-center'>
-                        <button className='btn px-3 h-75 sign_up'>Sell</button>
+                        <a href='/shop'><button className='btn px-3 h-75 sign_up'>Shop</button></a>
                         <a href='/login' className='btn px-3 h-75 sign_up'>log in</a>
                         <a href='/register' className='btn px-3 h-75 sign_up'>sign up</a>
                         <a href = '/favourites' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></a>
@@ -71,8 +78,8 @@ export default function Navbar(){
                 </div>
 
                 <div className=''>
-                    <form style={{position: 'relative'}}>
-                        <input className='mobile-search-bar w-100' placeholder='Search here'></input>
+                    <form style={{position: 'relative'}} onSubmit={e=>handleSearch(e)}>
+                        <input className='mobile-search-bar w-100' value={search} onChange={e=>setSearch(e.target.value)} placeholder='Search here'></input>
                         <button className='btn btn-link search-icon'>
                             <i className="bi bi-search"></i>
                         </button>

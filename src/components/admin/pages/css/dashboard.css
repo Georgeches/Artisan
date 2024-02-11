@@ -1,5 +1,5 @@
 .home{
-    margin-top: 85px;
+    margin-top: 0px;
 }
 
 .admin-summary .card-first{
@@ -38,7 +38,7 @@
 
 @media only screen and (max-width: 800px) {
     .home{
-        margin-top: 70px;
+        margin-top: 0px;
     }
     .recent-orders{
         width: 85vh;
@@ -51,7 +51,7 @@
 
 @media only screen and (max-width: 600px) {
     .home{
-        margin-top: 70px;
+        margin-top: 10px;
         margin-left: 35px;
     }
     .recent-orders{

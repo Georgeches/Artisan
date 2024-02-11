@@ -9,8 +9,8 @@
     height: 70px;
   }
   
-  .main-nav li{
-    margin-bottom: 25px;
+  .navbar-header{
+    max-width: fit-content;
   }
   
   .main-nav li a{

@@ -4,14 +4,12 @@ import './css/orders.css'
 function Orders({orders}) {
 
     const [searchedValue, setSearchValue] = useState("")
-    const [filterBy, setFilterBy] = useState("customer")
-    const [duration, setDuration] = useState("forever");
     const [companyOrders, setOrders] = useState([])
-
-    function changeFilterBy(e){
-        e.preventDefault();
-        setFilterBy(e.target.value)
-    }
+    const [page, setPage] = useState(1)
+    const pagesCount = orders.length/10-Math.floor(orders.length/10) > 0?
+        Math.floor(orders.length/10) + 1
+        :
+        orders.length/10
 
     const totalSales = companyOrders?.reduce((sum, order) => sum+order.sale, 0)
 
@@ -21,11 +19,6 @@ function Orders({orders}) {
                 <div className="position-relative d-flex">
                     <span className="position-absolute search"><i className="fa fa-search"></i></span>
                     <input className="form-control w-100" placeholder="Type to Search..." onChange={e=>setSearchValue(e.target.value)}/>
-                    <select onChange={e=>changeFilterBy(e)} className='ms-3'>
-                        <option value="customer">Search by customer name</option>
-                        <option value="products">Search by products</option>
-                        <option value="merchant">Search by merchandiser</option>
-                    </select>
                 </div>
             </div>
             <hr/>
@@ -38,6 +31,7 @@ function Orders({orders}) {
                             <th scope="col" width="15%">Products ordered</th>
                             <th scope="col" width="15%">Location</th>
                             <th scope="col" width="15%">Status</th>
+                            <th scope="col" width="15%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +42,10 @@ function Orders({orders}) {
                                 <td>{order?.products_ordered}</td>
                                 <td>{order?.location}</td>
                                 <td>Ksh. {order?.status}</td>
-
+                                <td>
+                                    <i class="bi bi-trash-fill"></i>
+                                    <i class="bi bi-pencil-square"></i>
+                                </td>
                             </tr>
                         )}
                         {companyOrders.length===0&&(
@@ -58,6 +55,11 @@ function Orders({orders}) {
                         )}
                     </tbody>
                 </table>
+                <div className='d-flex align-items-center justify-content-center w-100'>
+                    <button className='btn btn-outline-dark btn-sm' onClick={e=> page>1 && setPage(page-1)}>previous</button>
+                    <p className='text-center mx-4'>Page {page}/{pagesCount}</p>
+                    <button className='btn btn-outline-dark btn-sm' onClick={e=> pagesCount>page && setPage(page+1)}>Next</button>
+                </div>
                 <hr/>
             </div>
         </div>

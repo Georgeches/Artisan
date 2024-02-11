@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../css/customerInfo.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login({api, artisans, setUser}) {
+export default function Login({api, artisans, setUser, setAim}) {
     const nav = useNavigate();
     let path = api+'/auth/artisan/login'
 
@@ -33,7 +33,9 @@ export default function Login({api, artisans, setUser}) {
                         localStorage.setItem('user', JSON.stringify(artisans[i]))
                         localStorage.setItem('token', data.token)
                         setUser(artisans[i])
-                        nav('/')
+                        localStorage.setItem('aim', 'sell')
+                        setAim("sell");
+                        nav('/admin')
                         break
                     }
                 }
@@ -63,7 +65,7 @@ export default function Login({api, artisans, setUser}) {
                             </label>
                             <input
                                 autoComplete="off"
-                                type="text"
+                                type="email"
                                 id="email"
                                 placeholder="Enter email address"
                                 className="form-control mb-2"
@@ -80,7 +82,7 @@ export default function Login({api, artisans, setUser}) {
                             </label>
                             <input
                                 autoComplete="off"
-                                type="text"
+                                type="password"
                                 id="password"
                                 placeholder="Enter password"
                                 className="form-control mb-2"

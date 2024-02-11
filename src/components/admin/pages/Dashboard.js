@@ -13,91 +13,66 @@ const Dashboard = ({orders, customers}) => {
         <h3>Dashboard</h3>
 
         <div className="admin-summary row mt-4">
-          <div className="col-lg-3 col-md-6 col-11">
+          <div className="col-lg-3 col-md-6 col-11 mt-3">
           <div className="card card-first" style={{height: "154px"}}>
             <div className="card-body mt-3">
               <div className="mb-4">
-              <h4 className="fw-bold text-success">Total Revenue</h4>
+              <h4 className="fw-bold text-success">Total Sales</h4>
               </div>
               <h4 className="fw-normal text-muted">Ksh 2000000</h4>
             </div>
           </div>
           </div>
 
-          <div className="col-md-6 col-lg-3 col-11">
+          <div className="col-md-6 col-lg-3 col-11 mt-3">
           <div className="card card-second" style={{height: "154px"}}>
             <div className="card-body mt-3">
               <div className="mb-4">
-                <h4 className="fw-bold text-primary">Total Sales</h4>
+                <h4 className="fw-bold text-primary">Total Products</h4>
               </div>
-              <h4 className="fw-normal text-muted">Ksh 5000000</h4>
+              <h4 className="fw-normal text-muted">30</h4>
             </div>
           </div>
           </div>
 
-          <div className="col-md-6 col-lg-3 col-11">
+          <div className="col-md-6 col-lg-3 col-11 mt-3">
           <div className="card card-third" style={{height: "154px"}}>
             <div className="card-body mt-3">
               <div className="mb-4">
-                <h4 className="fw-bold" style={{color: "rgb(0, 72, 187)"}}>Total Expenses</h4>
+                <h4 className="fw-bold" style={{color: "rgb(0, 72, 187)"}}>Total Customers</h4>
               </div>
-              <h4 className="fw-normal text-muted">Ksh 3000000</h4>
+              <h4 className="fw-normal text-muted">50</h4>
             </div>
           </div>
           </div>
 
-          <div className="col-md-6 col-lg-3 col-11">
-          <div className="card card-fourth" style={{height: "154px"}}>
-            <div className="card-body mt-3">
-              <div className="mb-4">
-                <h4 className="fw-bold" style={{color: "rgb(255, 55, 55)"}}>Total Profits</h4>
+          <div className="col-md-6 col-lg-3 col-11 mt-3">
+            <div className="card card-fourth" style={{height: "154px"}}>
+              <div className="card-body mt-3">
+                <div className="mb-4">
+                  <h4 className="fw-bold" style={{color: "rgb(255, 55, 55)"}}>Pending Orders</h4>
+                </div>
+                <h4 className="fw-normal text-muted">Ksh 3000000</h4>
               </div>
-              <h4 className="fw-normal text-muted">Ksh 3000000</h4>
             </div>
           </div>
+
+          <div className="col-md-6 col-lg-3 col-11 mt-3">
+            <div className="card card-third" style={{height: "154px"}}>
+              <div className="card-body mt-3">
+                <div className="mb-4">
+                  <h4 className="fw-bold" style={{color: "rgb(255, 55, 55)"}}>Total Orders</h4>
+                </div>
+                <h4 className="fw-normal text-muted">300</h4>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="row mt-5 associates">
-          <div className="col-11 ms-md-0 ms-2 px-4 mx-md-3 my-3 my-md-0 bg-white border col-md-5 col-lg-5" style={{height: "400px", overflow: "hidden"}}>
-              <div className="customers-header pt-4">
-                <h4>Customers</h4>
-              </div>
-              <hr/>
-              <div className="customers-list">
-                <ul className="list-group" style={{height: "300px", overflowY: "scroll"}}>
-                  {orders.map(order=>
-                    <li key={order.id} className="list-group-item d-flex align-items-center">{order?.customer_name}</li>
-                  )}
-                </ul>
-              </div>
-          </div>
-
-          <div className="col-11 ms-md-0 ms-2 px-4 bg-white border col-md-6 col-lg-6" style={{height: "400px", overflow: "hidden"}}>
-              <div className="customers-header pt-4 d-flex justify-content-between">
-                <h4>Merchants</h4>
-                <a href="/merchants" className="text-muted">View all</a>
-              </div>
-              <hr style={{marginTop: "8px"}}/>
-              <div className="customers-list">
-                <ul className="list-group" style={{height: "300px", overflowY: "scroll"}}>
-                  {customers.map(customer=>
-                    <li key={customer?.id} className="list-group-item d-flex align-items-center">
-                      <div>
-                        {/* <img src={customer?.profile_picture} alt="pic"/> */}
-                      </div>
-                      {customer?.name}
-                    </li>
-                  )}
-                </ul>
-              </div>
-          </div>
-        </div>
-
-        <div style={{}} className="recent-orders mt-5 mb-5 bg-white border">
+        <div style={{}} className="recent-orders mt-5 bg-white border">
           <div className="customers-header pt-4 mb-4 ps-4 d-flex justify-content-between">
             <h4>Recent Orders</h4>
-            <a href="/merchants" className="text-muted me-4">View all</a>
+            <a href="/admin/orders" className="text-muted me-4">View all</a>
           </div>
           <hr/>
           <div style={{overflowX: "scroll"}}>

@@ -2,8 +2,7 @@ import React from "react";
 import ProductCard from "../cards/ProductCard";
 import './css/shop.css'
 
-export default function Shop({artisans, products}){
-
+export default function Shop({artisans, products, search, setSearch}){
     return(
         <div className="container-fluid px-lg-4" style={{marginTop: "80px"}}>
             <div className="row">
@@ -13,7 +12,7 @@ export default function Shop({artisans, products}){
 
                 <div className="col-md-9">
                     <form className="" style={{position: "relative", width: "80%"}}>
-                        <input className="form-control" type="text" placeholder="Search..."/>
+                        <input className="form-control" type="text" value={search} placeholder="Search..." onChange={e=>setSearch(e.target.value)}/>
                         <button className='btn btn-link search-icon' style={{top: '0px', right: '1vh', fontSize: '17px'}}>
                             <i class="bi bi-search"></i>
                         </button>

@@ -43,7 +43,7 @@ export default function Register({api}) {
             }
             else{
                 console.log(res.json())
-                nav('/')
+                nav('/login')
             }
         })
         .catch(err=>{
