@@ -51,7 +51,10 @@ export default function NewProduct({api}){
                 <label htmlFor="image">
                     Image
                 </label>
-                <input onChange={e=>setNewProduct({...newProduct, ...{image: [URL.createObjectURL(e.target.files[0])]}})} className="form-control mb-3" id="image" name="image" type="file" accept="image/*" placeholder="Enter image of product"/>
+                <input onChange={e=>setNewProduct({...newProduct,
+      ...{ images: Array.from(e.target.files).map((file) => URL.createObjectURL(file)) },
+    })
+  } className="form-control mb-3" id="image" name="image" type="file" accept="image/*" placeholder="Enter image of product"/>
 
                 {newProduct?.image &&
                     <div className="imageUploaded p-5 mb-3 text-center" style={{background: "rgb(230, 230, 230)"}}>
