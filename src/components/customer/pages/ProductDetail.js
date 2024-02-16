@@ -29,10 +29,8 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
         setInCart(cartItems.find(item=>item?._id===product?._id) !== undefined)
     }, [product])
 
-    console.log(cartItems.find(item=>item?._id===product?._id) !== undefined)
     function goBack(){
         window.history.back()
-        console.log(window.history)
     };
 
     function handleImageLoad(){
@@ -50,9 +48,9 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
         const cartItem = {
             _id: product?._id,
             name: product?.name,
-            price: product?.price,
+            price: parseFloat(product?.price),
             quantity: 1,
-            total: product?.price
+            total: parseFloat(product?.price)
         }
         localStorage.setItem("cart", JSON.stringify([...cart, cartItem]))
         setCart([...cartItems, product])
