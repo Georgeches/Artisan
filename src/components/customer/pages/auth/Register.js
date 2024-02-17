@@ -16,10 +16,19 @@ export default function Register({api}) {
     const [town, setTown] = useState('');
     const [country, setCountry] = useState('');
     const [errors, setErrors] = useState([]);
+    const [profilePicture, setProfilePicture] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const handleProfilePictureChange = (e) => {
+        const file = e.target.files[0];
+        setProfilePicture(file);
+        setSelectedImage(URL.createObjectURL(file));
+      };
+      
 
     function registerArtisan(e){
         e.preventDefault();
-
+/* 
         let artisan = {
             name: firstName + ' ' + secondName,
             county: county,
@@ -27,14 +36,25 @@ export default function Register({api}) {
             email: userEmail,
             password: password,
             phone: userPhone,
-        }
+            profilePicture:profilePicture
+        } */
+
+         let formData = new FormData();
+  formData.append('name', firstName + ' ' + secondName);
+  formData.append('county', county);
+  formData.append('location', location);
+  formData.append('email', userEmail);
+  formData.append('password', password);
+  formData.append('phone', userPhone);
+  formData.append('town', town);
+  formData.append('profilePicture', profilePicture); 
 
         fetch(path, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(artisan)
+            body:formData
         })
         .then(res=>{
             if(!res.ok){
@@ -174,6 +194,25 @@ export default function Register({api}) {
                         spellCheck="false"
                         required
                     />
+                    <label htmlFor="profile-picture" className="form-label">
+  Profile Picture
+</label>
+<input
+  type="file"
+  id="profile-picture"
+  className="form-control"
+  onChange={handleProfilePictureChange}
+  accept="image/*"
+/>
+
+{selectedImage && (
+  <div className="mt-3">
+    <label>Selected Image:</label>
+    <img src={selectedImage} alt="Selected Profile" className="img-fluid" />
+  </div>
+)}
+
+
                     <button className="btn btn-dark mt-2 next-btn">Register</button>
                     <p className=''>Already have an account? <a href='login' className='ms-1 text-info'>Log in</a></p>
                 </form>
