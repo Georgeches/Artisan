@@ -67,7 +67,7 @@ export default function NewProduct({api}){
                 </label>
                 <textarea onChange={e=>setNewProduct({...newProduct, ...{description: e.target.value}})} className="form-control" rows="5"></textarea>
                 
-                <button onClick={e=>saveProduct(e)} className="btn btn-success mt-3">Save product</button>
+                <button onClick={e=>saveProduct(e)} className="btn btn-success mt-3">Save</button>
             </form>
         </div>
     )

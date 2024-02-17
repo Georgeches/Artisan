@@ -103,7 +103,7 @@ function App() {
           <Route path='/shop' element={<Shop artisans={artisans} products={productResults} search={search} setSearch={setSearch}/>} />
           <Route path="/cart" element={<Cart cart={cart} cartItems={cartItems} setCart={setCart} total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
           <Route path="/customerinfo" element={<CustomerInfo/>} />
-          <Route path="/checkout" element={<PaymentForm total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
+          <Route path="/checkout" element={<PaymentForm total={total} subtotal={subtotal} tax={tax} shipping={shipping} cartItems={cartItems} api={api}/>} />
           <Route path="/products/:id" element={<ProductDetail api={api} setCart={setCart} cartItems={cartItems} artisans={artisans} products={products}/>} />
           <Route path="/artisans/:id" element={<ArtisanPage api={api} products={products} artisans={artisans}/>} />
           <Route path='/favourites' element={<Favourites />} />
