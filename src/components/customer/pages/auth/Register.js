@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import '../css/customerInfo.css';
 import { useNavigate } from 'react-router-dom';
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
-export default function Register({api}) {
+export default function Register({ api }) {
     const nav = useNavigate();
-    let path = api+'/artisans'
+    let path = api + '/artisans'
 
     const [firstName, setFirstName] = useState('');
     const [secondName, setSecondName] = useState('');
@@ -18,54 +19,93 @@ export default function Register({api}) {
     const [profilePicture, setProfilePicture] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
 
+   
+    console.log(process.env.REACT_APP_NEXT_AWS_S3_REGION)
+
     const handleProfilePictureChange = (e) => {
         const file = e.target.files[0];
         setProfilePicture(file);
         setSelectedImage(URL.createObjectURL(file));
-      };
-      
+    };
 
-    function registerArtisan(e){
+    async function registerArtisan(e) {
         e.preventDefault();
 
-        let artisan = {
-            name: firstName + ' ' + secondName,
-            county: county,
-            town: town,
-            location: location,
-            email: userEmail,
-            password: password,
-            phone: userPhone,
-            profilePicture:profilePicture
-        }
+        try {
+            if (!profilePicture) {
+                throw new Error("Please select a profile picture");
+            }
 
-        fetch(path, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(artisan)
-        })
-        .then(res=>{
-            if(!res.ok){
-                setErrors(res.json())
-                console.log(res)
+            const uploadedFilename = await uploadFileToS3(profilePicture, profilePicture.name);
+
+            let artisan = {
+                name: firstName + ' ' + secondName,
+                county: county,
+                town: town,
+                location: location,
+                email: userEmail,
+                password: password,
+                customers: [],
+                oders: [],
+                phone: userPhone,
+                profilePicture:'https://inuacraft.s3.eu-north-1.amazonaws.com/'+ uploadedFilename
+            };
+            console.log(uploadedFilename)
+
+            const response = await fetch(path, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(artisan)
+            });
+
+            if (!response.ok) {
+                setErrors(await response.json());
+                console.log(errors);
+            } else {
+                console.log(await response.json());
+                nav('/login');
             }
-            else{
-                console.log('there was no error')
-                console.log(res.json())
-                nav('/login')
-            }
-        })
-        .catch(err=>{
-            console.log('some error here')
-        })
+        } catch (err) {
+            console.log('Error:', err);
+        }
     }
+
+    async function uploadFileToS3(file, filename) {
+        const uploadClient = new S3Client({
+            region: process.env.REACT_APP_NEXT_AWS_S3_REGION,
+            credentials: {
+                secretAccessKey: process.env.REACT_APP_NEXT_AWS_S3_SECRET_ACCESS_KEY,
+                accessKeyId: process.env.REACT_APP_NEXT_AWS_S3_ACCESS_KEY_ID,
+            },
+        });
+    
+        const fileBuffer = file;
+        const params = {
+            Bucket: process.env.REACT_APP_NEXT_AWS_S3_BUCKET_NAME,
+            Key: `${filename}${Date.now()}`,
+            Body: fileBuffer,
+            ContentType: "image/jpeg",
+        };
+        const command = new PutObjectCommand(params);
+        console.log(command)
+        try {
+            const response = await uploadClient.send(command);
+            console.log(response);
+            return params.Key;
+            console.log(params.Key)
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+    
 
     return (
         <div className="container-fluid checkout-page">
             <div className="row contact-info bg-light p-4">
-                <form onSubmit={e => registerArtisan(e)}>
+                <form onSubmit={registerArtisan}>
                     <div className="row">
                         <div className="col">
                             <label htmlFor="first-name" className="form-label">
@@ -154,23 +194,23 @@ export default function Register({api}) {
                                 spellCheck="false"
                                 required
                             />
-                            </div>
+                        </div>
 
-                            <div className='col'>
-                                <label htmlFor="address-two" className="form-label">
-                                    County
-                                </label>
-                                <input
-                                    type="text"
-                                    autoComplete="off"
-                                    placeholder="Your county"
-                                    className="form-control"
-                                    value={county}
-                                    onChange={(e) => setCounty(e.target.value)}
-                                    spellCheck="false"
-                                    required
-                                />
-                            </div>
+                        <div className='col'>
+                            <label htmlFor="address-two" className="form-label">
+                                County
+                            </label>
+                            <input
+                                type="text"
+                                autoComplete="off"
+                                placeholder="Your county"
+                                className="form-control"
+                                value={county}
+                                onChange={(e) => setCounty(e.target.value)}
+                                spellCheck="false"
+                                required
+                            />
+                        </div>
                     </div>
                     <label htmlFor="city" className="form-label">
                         Nearest Town
@@ -186,24 +226,23 @@ export default function Register({api}) {
                         required
                     />
                     <label htmlFor="profile-picture" className="form-label">
-  Profile Picture
-</label>
-<input
-  type="file"
-  id="image"
-    name="image"
-  className="form-control"
-  onChange={handleProfilePictureChange}
-  accept="image/*"
-/>
+                        Profile Picture
+                    </label>
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        className="form-control"
+                        onChange={handleProfilePictureChange}
+                        accept="image/*"
+                    />
 
-{selectedImage && (
-  <div className="mt-3">
-    <label>Selected Image:</label>
-    <img src={selectedImage} alt="Selected Profile" className="img-fluid" />
-  </div>
-)}
-
+                    {selectedImage && (
+                        <div className="mt-3">
+                            <label>Selected Image:</label>
+                            <img src={selectedImage} alt="Selected Profile" className="img-fluid" />
+                        </div>
+                    )}
 
                     <button className="btn btn-dark mt-2 next-btn">Register</button>
                     <p className=''>Already have an account? <a href='login' className='ms-1 text-info'>Log in</a></p>
