@@ -199,7 +199,8 @@ export default function Register({api}) {
 </label>
 <input
   type="file"
-  id="profile-picture"
+  id="image"
+    name="image"
   className="form-control"
   onChange={handleProfilePictureChange}
   accept="image/*"
