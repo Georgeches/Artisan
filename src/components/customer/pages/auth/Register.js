@@ -14,7 +14,6 @@ export default function Register({api}) {
     const [location, setLocation] = useState('');
     const [county, setCounty] = useState('');
     const [town, setTown] = useState('');
-    const [country, setCountry] = useState('');
     const [errors, setErrors] = useState([]);
     const [profilePicture, setProfilePicture] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -28,46 +27,38 @@ export default function Register({api}) {
 
     function registerArtisan(e){
         e.preventDefault();
-/* 
+
         let artisan = {
             name: firstName + ' ' + secondName,
             county: county,
+            town: town,
             location: location,
             email: userEmail,
             password: password,
             phone: userPhone,
             profilePicture:profilePicture
-        } */
-
-         let formData = new FormData();
-  formData.append('name', firstName + ' ' + secondName);
-  formData.append('county', county);
-  formData.append('location', location);
-  formData.append('email', userEmail);
-  formData.append('password', password);
-  formData.append('phone', userPhone);
-  formData.append('town', town);
-  formData.append('profilePicture', profilePicture); 
+        }
 
         fetch(path, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body:formData
+            body: JSON.stringify(artisan)
         })
         .then(res=>{
             if(!res.ok){
                 setErrors(res.json())
-                console.log(errors)
+                console.log(res)
             }
             else{
+                console.log('there was no error')
                 console.log(res.json())
                 nav('/login')
             }
         })
         .catch(err=>{
-            console.log(err)
+            console.log('some error here')
         })
     }
 

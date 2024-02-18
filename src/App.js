@@ -29,6 +29,7 @@ import Customers from './components/admin/pages/Customers';
 import Products from './components/admin/pages/Products';
 import NewProduct from './components/admin/pages/Forms/NewProduct';
 import EditProduct from './components/admin/pages/Forms/EditProduct';
+import Customer from './components/customer/pages/Customer';
 
 function App() {
 
@@ -62,7 +63,7 @@ function App() {
   const [user, setUser] = useState(JSON.parse(activeUser))
 
   const api = `${process.env.REACT_APP_API}`
-  const subtotal = cartItems.reduce((a, b)=>a+parseInt(b?.total), 0)
+  const subtotal = cartItems?.reduce((a, b)=>a+parseInt(b?.total), 0)
   const tax = Math.floor(0.16*subtotal)
   const shipping = 500
   const total = Math.floor(subtotal+tax+shipping)
@@ -97,18 +98,19 @@ function App() {
               <ProductsSection products={products} artisans={artisans}/>
               <ArtisansSection artisans={artisans}/>
               <Values />
-              <Footer/>
+              {/* <Footer/> */}
             </div>
           } />
           <Route path='/shop' element={<Shop artisans={artisans} products={productResults} search={search} setSearch={setSearch}/>} />
           <Route path="/cart" element={<Cart cart={cart} cartItems={cartItems} setCart={setCart} total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
           <Route path="/customerinfo" element={<CustomerInfo/>} />
           <Route path="/checkout" element={<PaymentForm total={total} subtotal={subtotal} tax={tax} shipping={shipping} cartItems={cartItems} api={api}/>} />
-          <Route path="/products/:id" element={<ProductDetail api={api} setCart={setCart} cartItems={cartItems} artisans={artisans} products={products}/>} />
-          <Route path="/artisans/:id" element={<ArtisanPage api={api} products={products} artisans={artisans}/>} />
+          <Route path="/products/:id" element={<ProductDetail api={api} search={search} setSearch={setSearch} setCart={setCart} cartItems={cartItems} artisans={artisans} products={products}/>} />
+          <Route path="/artisans/:id" element={<ArtisanPage api={api} products={products} artisans={artisans} search={search} setSearch={setSearch}/>} />
           <Route path='/favourites' element={<Favourites />} />
+          <Route path='/customer' element={<Customer orders={orders}/>} />
           <Route path='/register' element={<Register api={api}/>} />
-          <Route path='/login' element={<Login api={api} artisans={artisans} setUser={setUser} setAim={setAim}/>} />
+          <Route path='/login/:role' element={<Login api={api} artisans={artisans} customers={customers} setUser={setUser} setAim={setAim}/>} />
         </Routes>
         </>
         :

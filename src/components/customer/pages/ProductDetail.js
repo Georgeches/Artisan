@@ -7,7 +7,7 @@ import './css/productDetail.css'
 import Searchbar from '../partials/Searchbar';
 import { useParams } from 'react-router-dom';
 
-export default function ProductDetail({api, setCart, cartItems, artisans, products}){
+export default function ProductDetail({api, setCart, cartItems, artisans, products, search, setSearch}){
 
     const {id} = useParams();
     const [isExpanded, setIsExpanded] = useState(false);
@@ -191,7 +191,7 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
             </div>
 
             <div style={{position: 'relative', top: '70px'}}>
-                <Searchbar />
+                <Searchbar search={search} setSearch={setSearch}/>
                 <Values />
             </div>
             

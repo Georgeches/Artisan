@@ -11,7 +11,7 @@ export default function ArtisanCard({artisan}){
             <div className='card-details pt-4 pb-3 text-center'>
                 <p className='mb-3'>{artisan.name}</p>
                 <div className="card-button">
-                    <button className="border">Visit Shop</button>
+                    <a href={link}><button className="border">Visit Shop</button></a>
                 </div>
             </div>
         </div>

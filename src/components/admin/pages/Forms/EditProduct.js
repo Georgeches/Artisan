@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function EditProduct({api, products}){
@@ -6,9 +6,16 @@ export default function EditProduct({api, products}){
     const {id} = useParams()
     const product = products.find(i=>i?._id===id)
     const [updatedProduct, setUpdatedProduct] = useState({})
+    const [pics, setPics] = useState([])
+    const [newImage, setNewImage] = useState('')
     const [error, setError] = useState('')
     const path = `${api}/products/${product?._id}`
     console.log(updatedProduct)
+
+    useEffect(()=>{
+        setUpdatedProduct(product)
+        setPics(product?.otherPics)
+    }, [product])
 
     function saveProduct(e){
         e.preventDefault()
@@ -26,6 +33,13 @@ export default function EditProduct({api, products}){
             }
             console.log(res.json())
         })
+    }
+
+    function deleteImage(e, otherPic){
+        e.preventDefault()
+
+        setUpdatedProduct({...updatedProduct, ...{otherPics: updatedProduct.otherPics.filter(pic=>pic!==otherPic)}})
+        setPics(pics.filter(pic=>pic!==otherPic))
     }
 
     return(
@@ -72,6 +86,46 @@ export default function EditProduct({api, products}){
                 </label>
                 <textarea onChange={e=>setUpdatedProduct({...updatedProduct, ...{description: e.target.value}})} className="form-control" rows="5">{product?.description}</textarea>
                 
+                <div className="mt-4 mb-4">
+                    <p className="h7 mb-2">Product images:</p>
+                    <div className="table-responsive">
+                        <table className="table table-responsive">
+                            <thead>
+                                <tr className="bg-light">
+                                    <th scope="col" width="10%">Image</th>
+                                    <th scope="col" width="10%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {pics?.map(otherPic=>
+                                    <tr key={otherPic}>
+                                        <td>
+                                            <img
+                                                src="https://ih1.redbubble.net/image.5404692566.9768/st,small,507x507-pad,600x600,f8f8f8.u1.jpg"
+                                                alt=''
+                                                width="80"
+                                            />
+                                        </td>
+                                        <td>
+                                            <button
+                                                className='btn btn-link text-danger p-0'
+                                                style={{textDecoration: 'none'}}
+                                                onClick={e=>deleteImage(e, otherPic)}>
+                                                    <i class="bi bi-trash-fill"></i>Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                        {pics?.length===0&&(
+                                    <div className='container d-flex align-center mt-3' style={{position: "fixed"}}>
+                                        <p className='text-muted'>No additional images</p>
+                                    </div>
+                                )}
+                        <hr/>
+                    </div>
+                </div>
                 <button onClick={e=>saveProduct(e)} className="btn btn-success mt-3">Update product</button>
             </form>
         </div>

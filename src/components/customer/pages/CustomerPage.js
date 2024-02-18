@@ -63,7 +63,7 @@ export default function CustomerInfo() {
 
     return (
         <div className="container-fluid checkout-page">
-            <div className="row contact-info">
+            <div className="row contact-info bg-light p-4">
                 <form onSubmit={e => saveUserDetails(e)}>
                     <div className="row">
                         <div className="col">
