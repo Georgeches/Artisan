@@ -5,6 +5,23 @@ import './css/paymentPage.css'
 export default function PaymentForm({total, subtotal, tax, shipping, cartItems, api}){
 
     let userDetails = JSON.parse(sessionStorage.getItem("user_details"))
+    const name = userDetails.firstName + ' ' + userDetails.secondName
+    const phone = userDetails.phonePrefix + userDetails.userPhone
+    const address = userDetails.addressOne + ','+ userDetails.addressTwo
+    const email = userDetails.email
+    const city = userDetails.city
+    const country = userDetails.country
+
+    const customer = {
+        name: name,
+        phone: phone,
+        address: address,
+        email: email,
+        city: city,
+        country: country
+    }
+
+    console.log(name)
 
     function newOrder(e){
         e.preventDefault()
@@ -24,13 +41,14 @@ export default function PaymentForm({total, subtotal, tax, shipping, cartItems, 
 
         let new_order = {
             order_number: order_number,
-            customer: userDetails,
+            customer: customer,
             items: cartItems,
             status: 'pending',
-            payment_status: 'pending',
+            payment_status: false,
             shipping_fee: shipping,
-            amount: cartItems.reduce(sum, 0)
+            amount: total
         }
+        console.log(new_order)
         
         fetch(path, {
             method: 'POST',
