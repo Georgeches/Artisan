@@ -28,20 +28,19 @@ export default function Navbar({search, setSearch}){
                     </form>
                     <div className='buttons d-flex justify-content-evenly align-items-center'>
                         <a href='/shop'><button className='btn px-3 h-75 sign_up'>Shop</button></a>
-                        <a href='/login' className='btn px-3 h-75 sign_up'>log in</a>
+                        <li class="nav-item dropdown">
+                            <a className="btn px-3 h-75 sign_up dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Log in
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/login/customer">Customer</a></li>
+                                <li><hr class="dropdown-divider"/></li>
+                                <li><a class="dropdown-item" href="/login/artisan">Artisan</a></li>
+                            </ul>
+                        </li>
                         <a href='/register' className='btn px-3 h-75 sign_up'>sign up</a>
-                        <a href = '/favourites' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></a>
                         <a href='/cart' className='btn px-3 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></a>
                     </div>
-                </div>
-                <div className='nav2'>
-                    <p>Bags</p>
-                    <p>Wall hanging baskets</p>
-                    <p>Baskets</p>
-                    <p>Necklaces</p>
-                    <p>Wristbands</p>
-                    <p>Bows & arrows</p>
-                    <p>Wood carvings</p>
                 </div>
             </section>
 
@@ -72,7 +71,6 @@ export default function Navbar({search, setSearch}){
                     </div>
 
                     <div className='d-flex justify-content-evenly align-items-center'>
-                        <a href='/favourites' className='btn px-2 me-1 h-75 sign_up' id='cart'><i className="bi bi-suit-heart"></i></a>
                         <a href='/cart' className='btn px-2 h-75 sign_up' id='cart'><i className="bi bi-cart"></i></a>
                     </div>
                 </div>

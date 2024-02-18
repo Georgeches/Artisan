@@ -5,7 +5,7 @@ export default function Cart({cartItems, cart, setCart, total, subtotal, tax, sh
 
   console.log(JSON.parse(cart))
   return (
-    <section className="h-100 gradient-custom">
+    <section className="h-100 gradient-custom" style={{position: 'relative', top: "30px"}}>
       <div className="container py-md-5">
         <div className="row d-flex justify-content-center my-4">
           <div className="col-md-8">

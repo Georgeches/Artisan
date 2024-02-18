@@ -4,7 +4,7 @@ import Searchbar from "../partials/Searchbar";
 import ProductCard from "../cards/ProductCard";
 import './css/artisanPage.css'
 
-export default function ArtisanPage({api, products, artisans}){
+export default function ArtisanPage({api, products, artisans, search, setSearch}){
     const { id } = useParams();
     const [ artisan, setArtisan ] = useState({});
     const [artisanProducts, setProducts] = useState([]);
@@ -91,7 +91,7 @@ export default function ArtisanPage({api, products, artisans}){
                 )}
             </div>
             </div>
-            <Searchbar />
+            <Searchbar search={search} setSearch={setSearch}/>
         </div>
     )
 }

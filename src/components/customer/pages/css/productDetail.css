@@ -25,6 +25,7 @@
     display: grid;
     place-content: center;
     height: 400px;
+    overflow: hidden;
 }
 
 .product-detail-img img{

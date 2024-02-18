@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import './css/paymentPage.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function PaymentForm({total, subtotal, tax, shipping, cartItems, api}){
-
+    const nav = useNavigate()
     let userDetails = JSON.parse(sessionStorage.getItem("user_details"))
 
     function newOrder(e){
@@ -39,10 +40,18 @@ export default function PaymentForm({total, subtotal, tax, shipping, cartItems, 
             },
             body: JSON.stringify(new_order)
         })
+        .then(res=>{
+            if(!res.ok){
+                alert('Order not sent. Please try again lalter')
+            }
+            else{
+                nav('/customer')
+            }
+        })
     }
 
     return(
-        <div className="container payment-page" style={{position: "relative", top: "50px"}}>
+        <div className="container payment-page" style={{position: "relative", top: "10px"}}>
             <div className="row justify-content-center mt-5">
                 <div className="col-12 col-lg-6">
                     <div className="card contacts">
@@ -97,7 +106,7 @@ export default function PaymentForm({total, subtotal, tax, shipping, cartItems, 
             </div>
             <p className='m-0 text-center fw-light'>Payment via mpesa and card is not ready...</p>
             <div className='d-flex justify-content-center'>
-                <button className="btn purchase mb-4" onClick={e=>newOrder(e)}>Complete</button>
+                <button className="btn purchase mb-4" onClick={e=>newOrder(e)}>Send order</button>
             </div>
         </div>
     )

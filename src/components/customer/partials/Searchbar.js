@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom'
 import './css/partials.css'
 
-export default function Searchbar(){
+export default function Searchbar({search, setSearch}){
+    const nav = useNavigate()
 
     const recommendations = [
         {
@@ -26,13 +28,19 @@ export default function Searchbar(){
         
     ]
 
+    function goSearch(e){
+        e.preventDefault()
+
+        nav('/shop')
+    }
+
     return(
         <div className="container p-0 mt-5">
             <p className="h5 mb-3">Looking for something different?</p>
             <p className="h7 mb-2">Search below.</p>
 
-            <form style={{position: 'relative'}}>
-                <input className='search_bar' style={{width: "100%", height: "55px"}} placeholder='SEARCH'></input>
+            <form onSubmit={e=>goSearch(e)} style={{position: 'relative'}}>
+                <input className='search_bar' onChange={e=>setSearch(e.target.value)} style={{width: "100%", height: "55px"}} placeholder='SEARCH'></input>
                 <button className='btn btn-link search-icon' style={{top: '6px', right: '15px'}}>
                     <i class="bi bi-search"></i>
                 </button>
@@ -42,8 +50,11 @@ export default function Searchbar(){
                 {recommendations.map(recommendation=>
                 <div className='recommendation py-2 px-3 me-3 rounded d-flex justify-content-center align-items-center' style={{backgroundColor: recommendation.color}}>
                     <i class="bi bi-search"></i>
-                    <a href="/" className='text-dark small ms-2' style={{fontWeight: '500'}}>
-                        {recommendation.name}
+                    <a href="#" className='text-dark small ms-2' style={{fontWeight: '500'}}>
+                        <button onClick={e=>{
+                            setSearch(recommendation.name)
+                            nav('/shop')
+                            }} style={{background: "transparent", border: 'none'}}>{recommendation.name}</button>
                     </a>
                 </div>
                 )}

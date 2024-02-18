@@ -2,6 +2,8 @@
 
 .section{
     min-height: 48vh;
+    position: relative;
+    top: 0px;
 }
 
 .list-flex{
@@ -57,6 +59,10 @@ p.display-4{
 @media only screen and (max-width: 768px){
     p.long-text{
         padding: 0px 50px;
+    }
+    .section{
+        position: relative;
+        top: 50px;
     }
 }
 

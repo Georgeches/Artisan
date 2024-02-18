@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import '../css/customerInfo.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function Login({api, artisans, setUser, setAim}) {
+export default function Login({api, artisans, setUser, setAim, customers}) {
+    const {role} = useParams()
     const nav = useNavigate();
-    let path = api+'/auth/artisan/login'
+    let path = role==='artisan'?api+'/auth/artisan/login':api+'/auth/customer/login'
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState([]);
 
-    function loginArtisan(e){
+    function login(e){
         e.preventDefault();
 
-        let artisan = {
+        let credentials = {
             email: email,
             password: password
         }
@@ -23,20 +24,35 @@ export default function Login({api, artisans, setUser, setAim}) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(artisan)
+            body: JSON.stringify(credentials)
         })
         .then(res=>res.json())
         .then(data=>{
             if(data.message === undefined){
-                for(let i=0; i<=artisans.length; i++){
-                    if(artisans[i]?._id === data?.userId){
-                        localStorage.setItem('user', JSON.stringify(artisans[i]))
-                        localStorage.setItem('token', data.token)
-                        setUser(artisans[i])
-                        localStorage.setItem('aim', 'sell')
-                        setAim("sell");
-                        nav('/admin')
-                        break
+                if(role==="artisan"){
+                    for(let i=0; i<=artisans.length; i++){
+                        if(artisans[i]?._id === data?.userId){
+                            localStorage.setItem('user', JSON.stringify(artisans[i]))
+                            localStorage.setItem('token', data.token)
+                            setUser(artisans[i])
+                            localStorage.setItem('aim', 'sell')
+                            setAim("sell");
+                            nav('/admin')
+                            break
+                        }
+                    }
+                }
+                else{
+                    for(let i=0; i<=customers.length; i++){
+                        if(customers[i]?._id === data?.userId){
+                            sessionStorage.setItem('user_details', JSON.stringify(customers[i]));
+                            localStorage.setItem('user_token', data.token)
+                            setUser(artisans[i])
+                            localStorage.setItem('aim', 'buy')
+                            setAim("buy");
+                            nav('/')
+                            break
+                        }
                     }
                 }
             }
@@ -57,7 +73,7 @@ export default function Login({api, artisans, setUser, setAim}) {
     return (
         <div className="container-fluid checkout-page">
             <div className="contact-info p-5 bg-light">
-                <form onSubmit={e => loginArtisan(e)} className=''>
+                <form onSubmit={e => login(e)} className=''>
                     <div className="row">
                         <div className="col-12 mb-2">
                             <label htmlFor="email" className="form-label">

@@ -1,5 +1,5 @@
 .checkout-page{
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     justify-content: center !important;
 }
@@ -19,12 +19,12 @@
         width: 40%;
     }
     .checkout-page{
-        margin-top: 60px;
+        margin-top: 20px;
     }
 }
 
-.img-fluid{
+/* .img-fluid{
     height: 150px;
     width: 150px;
     border-radius: 100%;
-}
+} */
