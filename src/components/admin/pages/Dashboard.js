@@ -97,6 +97,12 @@ const Dashboard = ({orders, customers}) => {
                   <td>{customers.find(customer=>customer?.id===order?.customer_id)?.name}</td>
                 </tr>
               )}
+
+              {orders.length===0&&(
+                <div className='container d-flex align-center mt-3' style={{position: "fixed"}}>
+                    <p className='text-muted'>No recent orders.</p>
+                </div>
+              )}
             </tbody>
           </table>
           </div>

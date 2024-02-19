@@ -12,7 +12,6 @@ function Products({products, api, setProducts}) {
     const productsToShow = products.slice((page-1)*10, page*10).filter(product=>
             product?.name.toLowerCase().includes(searchedValue.toLowerCase())
         );
-    const totalProducts = products.length
 
     function deleteProduct(e, product){
         let confirmDelete = window.confirm('Are you sure you want to delete this product')
@@ -74,13 +73,14 @@ function Products({products, api, setProducts}) {
 
                             </tr>
                         )}
-                        {totalProducts.length===0&&(
-                            <div className='container d-flex align-center mt-3' style={{position: "fixed"}}>
-                                <p className='text-muted'>No orders found</p>
-                            </div>
-                        )}
                     </tbody>
                 </table>
+                {products.length===0&&(
+                            <div className='container d-flex flex-column align-center mt-3'>
+                                <p className='text-muted'>You have not uploaded any product</p>
+                                <a href='/admin/products/new' className='btn btn-primary mt-2' style={{width: 'fit-content'}}>Upload my first product</a>
+                            </div>
+                        )}
                 <div className='d-flex align-items-center justify-content-center w-100'>
                     <button className='btn btn-outline-dark btn-sm' onClick={e=> page>1 && setPage(page-1)}>previous</button>
                     <p className='text-center mx-4'>Page {page}/{pagesCount}</p>
