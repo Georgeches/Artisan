@@ -52,11 +52,10 @@ export default function Register({api}) {
                 console.log(res)
             }
             else{
-                console.log('there was no error')
-                console.log(res.json())
-                nav('/login')
+                nav('/login/artisan')
             }
         })
+        .then(data=>console.log(data))
         .catch(err=>{
             console.log('some error here')
         })

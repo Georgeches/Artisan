@@ -12,6 +12,7 @@ export default function CustomerInfo() {
     const [userEmail, setUserEmail] = useState('');
     const [phonePrefix, setCountryPrefix] = useState('');
     const [userPhone, setUserPhone] = useState('');
+    const [userPassword, setUserPassword] = useState('');
     const [addressOne, setAddressOne] = useState('');
     const [addressTwo, setAddressTwo] = useState('');
     const [city, setCity] = useState('');
@@ -44,6 +45,7 @@ export default function CustomerInfo() {
             secondName: secondName,
             email: userEmail,
             phonePrefix: phonePrefix,
+            password: userPassword,
             userPhone: parseInt(userPhone),
             addressOne: addressOne,
             addressTwo: addressTwo,
@@ -144,6 +146,18 @@ export default function CustomerInfo() {
                             />
                         </div>
                     </div>
+                    <label htmlFor="email" className="form-label">
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create password"
+                        className="form-control"
+                        onChange={(e) => setUserPassword(e.target.value)}
+                        spellCheck="false"
+                        required
+                    />
                     <label htmlFor="address-one" className="form-label">
                         Address Line 1
                     </label>

@@ -23,19 +23,19 @@ export default function Navbar({search, setSearch}){
                     <form onSubmit={e=>handleSearch(e)} className='border' style={{width: '50%', position: 'relative'}}>
                         <input className='search_bar w-100' value={search} placeholder='Search here' onChange={e=>setSearch(e.target.value)}></input>
                         <button type='submit' className='btn btn-link search-icon'>
-                            <i class="bi bi-search"></i>
+                            <i className="bi bi-search"></i>
                         </button>
                     </form>
                     <div className='buttons d-flex justify-content-evenly align-items-center'>
                         <a href='/shop'><button className='btn px-3 h-75 sign_up'>Shop</button></a>
-                        <li class="nav-item dropdown">
+                        <li className="nav-item dropdown">
                             <a className="btn px-3 h-75 sign_up dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Log in
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/login/customer">Customer</a></li>
-                                <li><hr class="dropdown-divider"/></li>
-                                <li><a class="dropdown-item" href="/login/artisan">Artisan</a></li>
+                            <ul className="dropdown-menu">
+                                <li><a className="dropdown-item" href="/login/customer">Customer</a></li>
+                                <li><hr className="dropdown-divider"/></li>
+                                <li><a className="dropdown-item" href="/login/artisan">Artisan</a></li>
                             </ul>
                         </li>
                         <a href='/register' className='btn px-3 h-75 sign_up'>sign up</a>
