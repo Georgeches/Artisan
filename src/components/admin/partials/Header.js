@@ -58,7 +58,8 @@ export default function AdminHeader({ user, orders, setAim, setUser}) {
                     <div className="mb-4 border" style={{width: "40px", height: "40px", overflow:"hidden", borderRadius: "100%"}}>
                       <img
                         className="w-100"
-                        src="https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"
+                        src={user?.profilePic}
+                        onError={e=>e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
                         alt=""
                       />
                     </div>

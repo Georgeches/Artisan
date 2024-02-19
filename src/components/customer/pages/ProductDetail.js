@@ -48,6 +48,7 @@ export default function ProductDetail({api, setCart, cartItems, artisans, produc
         const cartItem = {
             _id: product?._id,
             name: product?.name,
+            artisanId: product?.artisanId,
             price: parseFloat(product?.price),
             quantity: 1,
             total: parseFloat(product?.price)
