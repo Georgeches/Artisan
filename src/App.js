@@ -38,6 +38,7 @@ function App() {
   const cart =  localStorage.getItem("cart");
   const activeUser = localStorage.getItem("user");
   const userAim = localStorage.getItem("aim");
+  const productsInSession = sessionStorage.getItem('products_in_session')
   if(userDetails == null){
     sessionStorage.setItem('user_details', JSON.stringify([]));
   }
@@ -50,10 +51,13 @@ function App() {
   if(userAim == null){
     localStorage.setItem("aim", "buy")
   }
+  if(productsInSession==null){
+    sessionStorage.setItem('products_in_session', JSON.stringify([]))
+  }
 
   //state
   const [artisans, setArtisans] = useState([])
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState(productsInSession===null?[]:JSON.parse(productsInSession))
   const [orders, setOrders] = useState([])
   const [customers, setCustomers] = useState([])
   const [search, setSearch] = useState('')
@@ -74,12 +78,10 @@ function App() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${api}/products`).then((res) => res.json()),
       fetch(`${api}/artisans`).then((res) => res.json()),
       fetch(`${api}/customers`).then((res) => res.json())
     ])
-      .then(([productsData, artisansData, customersData]) => {
-        setProducts(productsData);
+      .then(([artisansData, customersData]) => {
         setArtisans(artisansData);
         setCustomers(customersData);
       })
@@ -89,11 +91,19 @@ function App() {
   }, []);
 
   useEffect(()=>{
-    console.log(products.length)
+    if(products.length===0){
+      fetch(`${api}/products`)
+      .then(res=>res.json())
+      .then(data=>{
+        sessionStorage.setItem('products_in_session', JSON.stringify(data))
+        setProducts(data)
+      })
+    }
+
     if(products.length>0){
       setLoading(false)
     }
-  }, [products])
+  }, [products, api])
 
   return (
     <BrowserRouter>
