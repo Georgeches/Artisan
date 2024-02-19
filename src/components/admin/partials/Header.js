@@ -27,7 +27,7 @@ export default function AdminHeader({ user, orders, setAim, setUser}) {
   },[headerSearch])
 
   return (
-    <div className="border">
+    <div className="border-md container-fluid p-0">
       <header className="header header-custom header-fixed header-one">
         <div className="container-fluid">
           <nav className="navbar mt-2 container-fluid d-flex justify-content-between align-items-center">
@@ -42,7 +42,7 @@ export default function AdminHeader({ user, orders, setAim, setUser}) {
             </div>
             <div className="main-menu-wrapper h-100 d-flex align-items-center">
               <ul className="main-nav d-flex justify-content-center align-items-center p-0">
-                <li className="search-bar me-4">
+                <li className="search-bar me-4 d-none d-md-block">
                   <form>
                     <input className="form-control" id="header-search" placeholder="Search..." autoComplete="off" onBlur={e=>toggleCard(e)} onFocus={e=>toggleCard(e)} onChange={e=>setHeaderSearch(e.target.value)}/>
                   </form>
@@ -54,21 +54,21 @@ export default function AdminHeader({ user, orders, setAim, setUser}) {
                 </li>
 
                 <li className="dropdown dropstart">
-                  <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div className="mb-4 border" style={{width: "40px", height: "40px", overflow:"hidden", borderRadius: "100%"}}>
+                  <a className="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div className="mb-4 border mt-3 mt-md-0" style={{width: "45px", height: "45px", overflow:"hidden", borderRadius: "100%"}}>
                       <img
                         className="w-100"
-                        src={user?.profilePic}
+                        src={user?.profilepic}
                         onError={e=>e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}
                         alt=""
                       />
                     </div>
                   </a>
-                  <ul class="dropdown-menu mt-5">
+                  <ul className="dropdown-menu mt-5 p-0 pt-2">
                     <li>
-                      <p style={{cursor: "pointer"}} className="py-2 px-4">{user?.name}</p>
+                      <p style={{cursor: "pointer", width: '200px'}} className="py-2 px-4">{user?.name}</p>
                     </li>
-                    <li onClick={e=>logout(e)} style={{cursor: "pointer"}} className="py-2 px-4 d-flex align-items-center">
+                    <li onClick={e=>logout(e)} style={{cursor: "pointer"}} className="bg-light py-2 px-4 d-flex align-items-center">
                       <box-icon type="solid" name='exit'></box-icon> 
                       Log Out
                     </li>

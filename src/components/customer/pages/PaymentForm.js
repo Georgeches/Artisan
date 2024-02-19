@@ -18,11 +18,13 @@ export default function PaymentForm({total, subtotal, tax, shipping, cartItems, 
         phone: phone,
         address: address,
         email: email,
+        password: userDetails.password,
         city: city,
-        country: country
+        country: country,
+        orders: []
     }
 
-    console.log(name)
+    console.log(customer)
 
     function newOrder(e){
         e.preventDefault()
@@ -59,10 +61,9 @@ export default function PaymentForm({total, subtotal, tax, shipping, cartItems, 
         })
         .then(res=>{
             if(!res.ok){
-                alert('Order not sent. Please try again lalter')
+                alert('Order not sent. Please try again later')
             }
             else{
-                console.log(res.json())
                 nav('/customer')
             }
         })

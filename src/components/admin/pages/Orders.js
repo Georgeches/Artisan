@@ -50,7 +50,7 @@ function Orders({orders}) {
                         )}
                         {companyOrders.length===0&&(
                             <div className='container d-flex align-center mt-3' style={{position: "fixed"}}>
-                                <p className='text-muted'>No orders found</p>
+                                <p className='text-muted'>You have no orders.</p>
                             </div>
                         )}
                     </tbody>

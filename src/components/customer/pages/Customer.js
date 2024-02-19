@@ -9,7 +9,6 @@ export default function Customer({orders}){
         Math.floor(customerOrders.length/10) + 1
         :
         customerOrders.length/10
-
     return(
         <div className="container" style={{marginTop: '100px'}}>
             <div className="table-responsive" style={{
@@ -46,7 +45,7 @@ export default function Customer({orders}){
                         )}
                         {customerOrders.length===0&&(
                             <div className='container d-flex align-center mt-3' style={{position: "fixed"}}>
-                                <p className='text-muted'>No orders found</p>
+                                <p className='text-muted'>You have no orders.</p>
                             </div>
                         )}
                     </tbody>

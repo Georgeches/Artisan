@@ -39,21 +39,6 @@ function App() {
   const activeUser = localStorage.getItem("user");
   const userAim = localStorage.getItem("aim");
   const productsInSession = sessionStorage.getItem('products_in_session')
-  if(userDetails == null){
-    sessionStorage.setItem('user_details', JSON.stringify([]));
-  }
-  if(cart == null){
-    localStorage.setItem('cart', JSON.stringify([]));
-  }
-  if(activeUser == null){
-    localStorage.setItem("user", JSON.stringify([]))
-  }
-  if(userAim == null){
-    localStorage.setItem("aim", "buy")
-  }
-  if(productsInSession==null){
-    sessionStorage.setItem('products_in_session', JSON.stringify([]))
-  }
 
   //state
   const [artisans, setArtisans] = useState([])
@@ -64,9 +49,9 @@ function App() {
   const [loading, setLoading] = useState(true)
   
   //localstorage
-  const [cartItems, setCart] = useState(JSON.parse(cart))
-  const [aim, setAim] = useState(userAim)
-  const [user, setUser] = useState(JSON.parse(activeUser))
+  const [cartItems, setCart] = useState(cart===null?[]:JSON.parse(cart))
+  const [aim, setAim] = useState(userAim===null?"buy":userAim)
+  const [user, setUser] = useState(activeUser===null?[]:JSON.parse(activeUser))
 
   const api = `${process.env.REACT_APP_API}`
   const subtotal = cartItems?.reduce((a, b)=>a+parseInt(b?.total), 0)
@@ -147,12 +132,12 @@ function App() {
           <AdminHeader user={user} setUser={setUser} setAim={setAim}/>
           <Sidebar setAim={setAim} setUser={setUser}/>
           <Routes>
-            <Route path='/admin' element={<Dashboard orders={orders} customers={customers}/>} />
-            <Route path='/admin/orders' element={<Orders orders={orders} customers={customers}/>} />
-            <Route path='/admin/customers' element={<Customers customers={customers}/>} />
-            <Route path='/admin/products' element={<Products products={products}/>} />
-            <Route path='/admin/products/new' element={<NewProduct products={products}/>} />
-            <Route path='/admin/products/edit/:id' element={<EditProduct products={products}/>} />
+            <Route path='/admin' element={<Dashboard orders={user?.orders} customers={user?.customers}/>} />
+            <Route path='/admin/orders' element={<Orders orders={user?.orders}/>} />
+            <Route path='/admin/customers' element={<Customers customers={user?.customers}/>} />
+            <Route path='/admin/products' element={<Products products={user?.products}/>} />
+            <Route path='/admin/products/new' element={<NewProduct userProducts={user?.products} products={products}/>} />
+            <Route path='/admin/products/edit/:id' element={<EditProduct userProducts={user?.products} products={products}/>} />
           </Routes>
         </>
       }
