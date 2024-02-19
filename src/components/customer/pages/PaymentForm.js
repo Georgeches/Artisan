@@ -49,7 +49,6 @@ export default function PaymentForm({total, subtotal, tax, shipping, cartItems, 
             shipping_fee: shipping,
             amount: total
         }
-        console.log(new_order)
         
         fetch(path, {
             method: 'POST',
@@ -63,8 +62,12 @@ export default function PaymentForm({total, subtotal, tax, shipping, cartItems, 
                 alert('Order not sent. Please try again lalter')
             }
             else{
+                console.log(res.json())
                 nav('/customer')
             }
+        })
+        .catch(err=>{
+            console.log(err)
         })
     }
 

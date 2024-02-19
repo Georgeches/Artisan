@@ -65,7 +65,7 @@ export default function Register({ api }) {
                 console.log(errors);
             } else {
                 console.log(await response.json());
-                nav('/login');
+                nav('/login/artisan');
             }
         } catch (err) {
             console.log('Error:', err);

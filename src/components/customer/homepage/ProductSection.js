@@ -7,7 +7,7 @@ export default function ProductsSection({products, artisans}){
 
             <div className="products list-flex">
                 {products.map(product=>
-                    <ProductCard artisans={artisans} product={product} page={'home'}/>
+                    <ProductCard key={product._id} artisans={artisans} product={product} page={'home'}/>
                 )}
             </div>
         </div>

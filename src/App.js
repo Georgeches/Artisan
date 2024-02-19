@@ -30,6 +30,7 @@ import Products from './components/admin/pages/Products';
 import NewProduct from './components/admin/pages/Forms/NewProduct';
 import EditProduct from './components/admin/pages/Forms/EditProduct';
 import Customer from './components/customer/pages/Customer';
+import Loader from './components/customer/partials/Loader';
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
   const [orders, setOrders] = useState([])
   const [customers, setCustomers] = useState([])
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(true)
   
   //localstorage
   const [cartItems, setCart] = useState(JSON.parse(cart))
@@ -86,33 +88,50 @@ function App() {
       });
   }, []);
 
+  useEffect(()=>{
+    console.log(products.length)
+    if(products.length>0){
+      setLoading(false)
+    }
+  }, [products])
+
   return (
     <BrowserRouter>
       {aim==="buy"?
         <>
-        <Navbar search={search} setSearch={setSearch}/>
-        <Routes>
-          <Route path='/' element={
-            <div className='App container-fluid p-0'>
-              <Hero />
-              <ProductsSection products={products} artisans={artisans}/>
-              <ArtisansSection artisans={artisans}/>
-              <Values />
-              {/* <Footer/> */}
-            </div>
-          } />
-          <Route path='/shop' element={<Shop artisans={artisans} products={productResults} search={search} setSearch={setSearch}/>} />
-          <Route path="/cart" element={<Cart cart={cart} cartItems={cartItems} setCart={setCart} total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
-          <Route path="/customerinfo" element={<CustomerInfo/>} />
-          <Route path="/checkout" element={<PaymentForm total={total} subtotal={subtotal} tax={tax} shipping={shipping} cartItems={cartItems} api={api}/>} />
-          <Route path="/products/:id" element={<ProductDetail api={api} search={search} setSearch={setSearch} setCart={setCart} cartItems={cartItems} artisans={artisans} products={products}/>} />
-          <Route path="/artisans/:id" element={<ArtisanPage api={api} products={products} artisans={artisans} search={search} setSearch={setSearch}/>} />
-          <Route path='/favourites' element={<Favourites />} />
-          <Route path='/customer' element={<Customer orders={orders}/>} />
-          <Route path='/register' element={<Register api={api}/>} />
-          <Route path='/login/:role' element={<Login api={api} artisans={artisans} customers={customers} setUser={setUser} setAim={setAim}/>} />
-        </Routes>
+        {loading?
+          <Loader />
+          :
+          <>
+          <Navbar search={search} setSearch={setSearch}/>
+          <Routes>
+            <Route path='/' element={
+              <div className='App container-fluid p-0'>
+                
+                <Hero />
+                <ProductsSection products={products} artisans={artisans}/>
+                <ArtisansSection artisans={artisans}/>
+                <Values />
+                {/* <Footer/> */}
+              </div>
+            } />
+            <Route path='/shop' element={<Shop artisans={artisans} products={productResults} search={search} setSearch={setSearch}/>} />
+            <Route path="/cart" element={<Cart cart={cart} cartItems={cartItems} setCart={setCart} total={total} subtotal={subtotal} tax={tax} shipping={shipping}/>} />
+            <Route path="/customerinfo" element={<CustomerInfo/>} />
+            <Route path="/checkout" element={<PaymentForm total={total} subtotal={subtotal} tax={tax} shipping={shipping} cartItems={cartItems} api={api}/>} />
+            <Route path="/products/:id" element={<ProductDetail api={api} search={search} setSearch={setSearch} setCart={setCart} cartItems={cartItems} artisans={artisans} products={products}/>} />
+            <Route path="/artisans/:id" element={<ArtisanPage api={api} products={products} artisans={artisans} search={search} setSearch={setSearch}/>} />
+            <Route path='/favourites' element={<Favourites />} />
+            <Route path='/customer' element={<Customer orders={orders}/>} />
+            <Route path='/register' element={<Register api={api}/>} />
+            <Route path='/login/:role' element={<Login api={api} artisans={artisans} customers={customers} setUser={setUser} setAim={setAim}/>} />
+          </Routes>
+          </>
+        }
         </>
+        :
+        loading?
+        <Loader />
         :
         <>
           <AdminHeader user={user} setUser={setUser} setAim={setAim}/>
