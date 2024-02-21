@@ -40,6 +40,10 @@ function App() {
   const userAim = localStorage.getItem("aim");
   const productsInSession = sessionStorage.getItem('products_in_session')
 
+  if(userDetails===null){
+    sessionStorage.setItem('user_details', JSON.stringify({}))
+  }
+
   //state
   const [artisans, setArtisans] = useState([])
   const [products, setProducts] = useState(productsInSession===null?[]:JSON.parse(productsInSession))
@@ -64,11 +68,13 @@ function App() {
   useEffect(() => {
     Promise.all([
       fetch(`${api}/artisans`).then((res) => res.json()),
-      fetch(`${api}/customers`).then((res) => res.json())
+      fetch(`${api}/customers`).then((res) => res.json()),
+      fetch(`${api}/orders`).then((res) => res.json())
     ])
-      .then(([artisansData, customersData]) => {
+      .then(([artisansData, customersData, ordersData]) => {
         setArtisans(artisansData);
         setCustomers(customersData);
+        setOrders(ordersData);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -136,7 +142,7 @@ function App() {
             <Route path='/admin/orders' element={<Orders orders={user?.orders}/>} />
             <Route path='/admin/customers' element={<Customers customers={user?.customers}/>} />
             <Route path='/admin/products' element={<Products products={user?.products}/>} />
-            <Route path='/admin/products/new' element={<NewProduct userProducts={user?.products} products={products}/>} />
+            <Route path='/admin/products/new' element={<NewProduct api={api} userProducts={user?.products} products={products}/>} />
             <Route path='/admin/products/edit/:id' element={<EditProduct userProducts={user?.products} products={products}/>} />
           </Routes>
         </>

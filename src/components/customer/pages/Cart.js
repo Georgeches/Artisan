@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import CartItem from './CartItem';
 
 export default function Cart({cartItems, cart, setCart, total, subtotal, tax, shipping}){
+  const customer = JSON.parse(sessionStorage.getItem('user_details'))
 
-  console.log(JSON.parse(cart))
+  const link = customer.email?'/checkout':'/customerinfo'
   return (
     <section className="h-100 gradient-custom" style={{position: 'relative', top: "30px"}}>
       <div className="container py-md-5">
@@ -63,7 +64,7 @@ export default function Cart({cartItems, cart, setCart, total, subtotal, tax, sh
                     <span>Ksh {total}</span>
                   </li>
                 </ul>
-                <a role="button" href='/customerinfo' className="btn btn-block mt-3 cart-btn">
+                <a role="button" href={link} className="btn btn-block mt-3 cart-btn">
                   Go to checkout <i class="bi bi-box-arrow-in-right ms-2"></i>
                 </a>
               </div>

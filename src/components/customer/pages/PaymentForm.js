@@ -59,12 +59,18 @@ export default function PaymentForm({total, subtotal, tax, shipping, cartItems, 
             },
             body: JSON.stringify(new_order)
         })
-        .then(res=>{
-            if(!res.ok){
-                alert('Order not sent. Please try again later')
+        .then(res=>res.json())
+        .then(data=>{
+            if(data?.message){
+                alert(data?.message)
             }
             else{
+                sessionStorage.setItem("user_details", JSON.stringify({...userDetails, ...{
+                    _id: data?.customerId,
+                    orders: data?.orders
+                }}))
                 nav('/customer')
+                window.location.reload()
             }
         })
         .catch(err=>{
