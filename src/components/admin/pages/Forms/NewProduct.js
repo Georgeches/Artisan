@@ -5,7 +5,7 @@ export default function NewProduct({api}){
     const [newProduct, setNewProduct] = useState({})
     const [error, setError] = useState('')
     const path = `${api}/products`
-    console.log(newProduct)
+    console.log(path)
     function saveProduct(e){
         e.preventDefault()
 

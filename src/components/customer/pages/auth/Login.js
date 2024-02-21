@@ -45,12 +45,13 @@ export default function Login({api, artisans, setUser, setAim, customers}) {
                 else{
                     for(let i=0; i<=customers.length; i++){
                         if(customers[i]?._id === data?.userId){
-                            sessionStorage.setItem('user_details', JSON.stringify({...customers[i], ...{role:"customer"}}));
+                            sessionStorage.setItem('user_details', JSON.stringify(customers[i]));
                             localStorage.setItem('user_token', data?.token)
                             setUser(customers[i])
                             localStorage.setItem('aim', 'buy')
                             setAim("buy");
-                            nav('/')
+                            nav('/customer')
+                            window.location.reload()
                             break
                         }
                     }
