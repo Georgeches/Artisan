@@ -14,22 +14,22 @@ This is an online marketplace for artisans in marginalised communities to sell t
 <h4>How To Run It</h4>
 <ul>
 <li>The website is hosted on <a href="https://artisan-mu.vercel.app/">https://artisan-mu.vercel.app/</a></li>
-<li>To run on local, navigate to the project folder and run npm install then npm start. The backend is already hosted so already accessible. To run the backend in local, navigate to the folder in the terminal, run npm install then npm start.</b></li>
+<li>To run front-end on local, navigate to the project folder and run npm install then npm start. The backend is already hosted so already accessible. To run the backend in local, navigate to the folder in the terminal, endure git is installed in your computer and switch to the backend branch then run npm install then npm start.</b></li>
 </ul>
 
-<h4>Technologies Used</h4>
-<h6>In the frotend we used:</h6>
+<h3>Technologies Used</h3>
+<h4>In the frotend we used:</h4>
 <p>Reactjs</p>
 <p>HTML</p>
 <p>CSS</p>
 <p>Bootstrap</p>
 <p>JavaScript</p>
 <br />
-<h6>In the backend we used:<b>
+<h4>In the backend we used:</h4>
 <p>Nodejs</p>
 <p>MongoDB</p>
 
-<h2>Author</h2>
+<h2>Authors</h2>
 <p>George Chesire</p>
 
 <h2>License</h2>
