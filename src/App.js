@@ -63,7 +63,7 @@ function App() {
   const shipping = 500
   const total = Math.floor(subtotal+tax+shipping)
 
-  const productResults = products.filter(product=>product?.name.toLowerCase().includes(search.toLowerCase()))
+  const productResults = products.filter(product=>product?.name?.toLowerCase().includes(search?.toLowerCase()))
 
   useEffect(() => {
     Promise.all([
